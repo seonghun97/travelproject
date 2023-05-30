@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	test용 jsp
+	test용 jsp입니다
 </body>
 </html>
