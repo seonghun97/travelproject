@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<form action="loginOk" method="post">
 	<table border="0" cellspacing="0" cellpadding="10">
 			<tr>
 				<td>아 이 디 :</td>
@@ -18,10 +19,11 @@
 			</tr>
 			<tr>
 				<td>
-				<input type="button" value="로그인" onclick="script:window.location.href='loginOk()'">&nbsp;&nbsp;
+				<input type="submit" value="로그인">&nbsp;&nbsp;
 				<input type="button" value="회원가입" onclick="script:window.location.href='join'">
 				</td>
 			</tr>
 	</table>
+	</form>
 </body>
 </html>

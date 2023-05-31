@@ -15,7 +15,7 @@ import com.travel.project.dao.IDao;
 @Controller
 public class TravelController {
 	@Autowired
-	private SqlSession sqlsesstion;
+	private SqlSession sqlsession;
 	
 	@RequestMapping("/join")
 	   private String joinOk() {
@@ -31,7 +31,7 @@ public class TravelController {
 	      String useremail = request.getParameter("useremail");
 	      String usermobile = request.getParameter("usermobile");
 	      
-	      IDao dao = sqlsesstion.getMapper(IDao.class);
+	      IDao dao = sqlsession.getMapper(IDao.class);
 
 	      int joinCheck = 0;
 	      
@@ -60,7 +60,7 @@ public class TravelController {
 		   String userid = request.getParameter("userid");
 		   String userpw = request.getParameter("userpw");
 		   
-		   IDao dao = sqlsesstion.getMapper(IDao.class);
+		   IDao dao = sqlsession.getMapper(IDao.class);
 		   
 		   int checkIdPwFlag = dao.checkIdPwDao(userid, userpw);
 		   //1이면 성공, 0이면 실패
@@ -68,12 +68,13 @@ public class TravelController {
 		   
 		   if(checkIdPwFlag == 1) {
 			  session.setAttribute("sessionId",userid);
+			  model.addAttribute("UserDto", dao.getMemberInfo(userid));
 			  return "index";
 		   }
 		   else 
 		   {
 			   
-			  return "login";
+			  return "loginOk";
 		   }
 	   }
 	   @RequestMapping (value="/login")
