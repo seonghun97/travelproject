@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org/DTD Mapper 3.0/EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="com.travel.project.dao.IDao">
+	<insert id="joinDao">
+		INSERT INTO usertbl2(userid, userpw, username, userbirth, useremail, usermobile) 
+		VALUES (#{param1},#{param2},#{param3}, #{param4}, #{param5}, #{param6})	
+	</insert>
+	<select id="checkIdDao" resultType="int">
+		SELECT COUNT(*) FROM usertbl2 WHERE userid=#{param1}
+	</select>
+	<select id="checkIdPwDao" resultType="int">
+		SELECT COUNT(*) FROM usertbl2 WHERE userid=#{param1} and userpw=#{param2}
+	</select>
+</mapper>
