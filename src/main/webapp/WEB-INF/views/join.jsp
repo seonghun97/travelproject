@@ -7,11 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<script type="text/javascript" src="/resources/js/join.js"></script>
 	<table border ="0" cellspacing="10">
 		 <form action="joinOk" method="post" name="join_frm"> 
 		  		<tr>
 		  			<td>아 이 디 :</td>
-		  			<td><input type="text" name="userid"></td>
+		  			<td><input type="text" name="userid" placeholder="아이디는 8~16"></td>
 		  		</tr>
 		  		<tr>
 		  			<td>비밀번호 : </td>
@@ -40,7 +41,7 @@
 		  		<tr>
 		  			<td colspan="2" align="center">
 		  				<input type="button" value="가입완료"onclick = "joinCheck()">&nbsp;&nbsp;
-		  				<input type="button" value="로그인">
+		  				<input type="button" value="로그인" onclick="script:window.location.href='login'">
 		  			</td>
 		  		</tr>
 		  	</form>
