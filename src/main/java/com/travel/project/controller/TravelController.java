@@ -16,6 +16,7 @@ public class TravelController {
 	@Autowired
 	private SqlSession sqlsesstion;
 	
+	
 	@RequestMapping ("/joinOk")
 		public String join(HttpServletRequest request, Model model) {
 		String userid = request.getParameter("userid");
@@ -52,6 +53,11 @@ public class TravelController {
 	@RequestMapping("/join")
 	private String joinOk() {
 		return "join";
+	}
+	
+	@RequestMapping(value= "/index")
+	public String index() {
+		return "index";
 	}
 	
 
