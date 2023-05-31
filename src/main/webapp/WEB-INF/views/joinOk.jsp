@@ -28,8 +28,8 @@
 		  			<table border ="0" cellspacing="10">
 		  				<tr>
 		  					<td>
-							${memberName }님 회원가입이 되셨습니다<br>
-							가입하신 아이디는 ${memberId }입니다.<br><br>
+							${userName }님 회원가입이 되셨습니다<br>
+							가입하신 아이디는 ${userId }입니다.<br><br>
 							<input type ="button" value="로그인 바로가기" onclick="script:window.location.href='login'">
 							</td>
 		  				</tr>

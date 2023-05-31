@@ -47,8 +47,8 @@ public class TravelController {
 		
 		if(joinCheck == 1) {
 			model.addAttribute("joinFlag", joinCheck);
-			model.addAttribute("memberName", username);
-			model.addAttribute("memberId", userid);
+			model.addAttribute("userName", username);
+			model.addAttribute("userId", userid);
 		}else {//회원가입실패
 			model.addAttribute("joinFlag", joinCheck);
 		}
