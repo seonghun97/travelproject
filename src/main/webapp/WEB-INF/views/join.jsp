@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript" src="/resources/js/join.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
+
 	<table border ="0" cellspacing="10">
 		 <form action="joinOk" method="post" name="join_frm"> 
 		  		<tr>
