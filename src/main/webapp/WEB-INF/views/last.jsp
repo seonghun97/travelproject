@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>test입니다</title>
+<title>Insert title here</title>
 </head>
 <body>
-	연결되있는지확인작업
+dsfa
 </body>
 </html>
