@@ -8,7 +8,6 @@
 <title>인덱스 페이지 입니다</title>
 </head>
 <body>
- <center> 
   <%@  include file= "include/header.jsp" %>
  <div>
    <table border="0" rowspan="20" width ="50%" >
@@ -30,7 +29,6 @@
       
   </table>
 </div>
-</center>
 <%@ include file="include/footeridx.jsp" %>
 
 </body>
