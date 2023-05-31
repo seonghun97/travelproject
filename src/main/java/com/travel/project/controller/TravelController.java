@@ -1,6 +1,7 @@
 package com.travel.project.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,14 @@ import com.travel.project.dao.IDao;
 @Controller
 public class TravelController {
 	@Autowired
-	private SqlSession sqlsesstion;
+	private SqlSession sqlsession;
 	
-	@RequestMapping ("/join")
+	@RequestMapping("/join")
+	private String joinOk() {
+		return "join";
+	}
+	
+	@RequestMapping ("/joinOk")
 		public String join(HttpServletRequest request, Model model) {
 		String userid = request.getParameter("userid");
 		String userpw = request.getParameter("userpw");
@@ -25,7 +31,7 @@ public class TravelController {
 		String useremail = request.getParameter("useremail");
 		String usermobile = request.getParameter("usermobile");
 		
-		IDao dao = sqlsesstion.getMapper(IDao.class);
+		IDao dao = sqlsession.getMapper(IDao.class);
 
 		int joinCheck = 0;
 		
@@ -47,14 +53,38 @@ public class TravelController {
 			model.addAttribute("joinFlag", joinCheck);
 		}
 		
-		return "join";
-		}
-	@RequestMapping("/joinOk")
-	private String joinOk() {
 		return "joinOk";
-	}
-	
+		}
 
-	
+	@RequestMapping(value ="/logout")
+	public String logout(HttpSession session) {
+		session.invalidate(); //세션 삭제 => logout
+		
+		return "redirect:login";
+	}
+
+	@RequestMapping(value = "/loginOk")
+	public String loginOk(HttpServletRequest request, Model model, HttpSession session) {
+	    String userid = request.getParameter("userid");
+	    String userpw = request.getParameter("userpw");
+
+	    IDao dao = sqlsession.getMapper(IDao.class);
+
+	    int checkIdPwFlag = dao.checkIdPwDao(userid, userpw);
+	    // 1이면 성공, 0이면 실패
+	    model.addAttribute("checkIdPwFlag", checkIdPwFlag);
+
+	    if (checkIdPwFlag == 1) {
+	        session.setAttribute("sessionId", userid);
+	        model.addAttribute("UserDto", dao.getMemberInfo(userid));
+	        return "index";
+	    } else {
+	        return "redirect:login"; // 로그인 실패 시 로그인 페이지로 이동
+	    }
+	}
+ @RequestMapping (value="/login")
+ public String login() {
+    return "login";
+ }
 	
 }
