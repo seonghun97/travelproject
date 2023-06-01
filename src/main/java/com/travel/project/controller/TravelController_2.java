@@ -13,7 +13,7 @@ import com.travel.project.dao.IDao;
 
 
 @Controller
-public class TravelController {
+public class TravelController_2 {
 	@Autowired
 	private SqlSession sqlsession;
 	

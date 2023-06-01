@@ -11,7 +11,7 @@
 <table border="0" cellspacing="0" cellpadding="" width="100%">
 		<tr class="headerline">
 			<td class="margin01">&nbsp;</td>
-			<td class="headertext"><a href="index">HOME</a></td>
+			<td class="headertext"><a href="index">일본여행사</a></td>
 			<td class="margin02">&nbsp;</td>
 			<%
 				String sessionId = (String) session.getAttribute("sessionId");
@@ -33,6 +33,7 @@
 			<%
 				} else {
 			%>
+			<td class="headertext"><a href="MyPage">마이페이지</a></td>
 			<%
 				}
 			%>
@@ -48,8 +49,11 @@
 			<%
 				}
 			%>
+			<td class="headertext"><a href="Accommodation">숙소</a>
+			<td class="headertext"><a href="Aviation">항공</a>
+			<td class="headertext"><a href="Review">리뷰</a>
+			<td class="headertext"><a href="bulletin">문의게시판</a>			
 		</tr>
-		
 	</table>
 
 </body>
