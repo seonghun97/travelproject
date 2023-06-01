@@ -5,11 +5,6 @@
 <head>
     <meta charset="UTF-8">
     <title>헤더 입니다.</title>
-    <script>
-        function showWarning() {
-            alert("로그인이 필요한 페이지입니다. 로그인 후 이용해주세요.");
-        }
-    </script>
 </head>
 <body>
 <table border="0" cellspacing="0" cellpadding="" width="100%">
@@ -41,7 +36,7 @@
 <script>
     function checkLogin() {
         <% if (sessionId == null) { %>
-        showWarning();
+        alert("로그인이 필요한 페이지입니다. 로그인 후 이용해주세요.");
         return false;
         <% } %>
     }
