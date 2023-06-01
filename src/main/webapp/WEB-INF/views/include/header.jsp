@@ -11,7 +11,7 @@
     <tr class="headerline">
         <td class="margin01">&nbsp;</td>
         <td class="headertext"><a href="index">HOME</a></td>
-        <td class="headertext"><a href="board" onclick="checkLogin()">board</a></td>
+        <td class="headertext"><a href="board" onclick="checkLogin()">문의게시판</a></td>
         <td class="margin02">&nbsp;</td>
         <% String sessionId = (String) session.getAttribute("sessionId");
         if (sessionId == null) { %>
