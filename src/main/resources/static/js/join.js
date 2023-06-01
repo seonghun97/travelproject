@@ -34,7 +34,7 @@
 		 return;
 	 }
 	   if(document.join_frm.usermobile.value.length == 0) {
-		 alert("전화번호 느 필수 입력사항입니다. 다시 확인해 주세요.");
+		 alert("전화번호 는 필수 입력사항입니다. 다시 확인해 주세요.");
 		 return;
 	 }
 	 document.join_frm.submit();

@@ -4,10 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>인덱스 페이지 입니다</title>
 </head>
 <body>
-		${UserDto.username}님 로그인 하셨습니다. 반갑습니다!<br>
-		${UserDto.userid }님의 가입일은 ${UserDto.joindate }입니다.<br><br>
+  <%@  include file= "include/header.jsp" %>
+  
+ 
+ 
+ 
+ 
+ 
+  
+  <%@ include file="include/footer.jsp" %>
 </body>
 </html>

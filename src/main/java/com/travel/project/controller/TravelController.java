@@ -18,12 +18,17 @@ public class TravelController {
 	private SqlSession sqlsession;
 	
 	@RequestMapping("/join")
-	private String joinOk() {
+	private String join() {
 		return "join";
 	}
+	@RequestMapping("/index")
+	private String index() {
+		return "index";
+	}
+	
 	
 	@RequestMapping ("/joinOk")
-		public String join(HttpServletRequest request, Model model) {
+		public String joinOk(HttpServletRequest request, Model model) {
 		String userid = request.getParameter("userid");
 		String userpw = request.getParameter("userpw");
 		String username = request.getParameter("username");
@@ -56,6 +61,11 @@ public class TravelController {
 		return "joinOk";
 		}
 
+	@RequestMapping (value="/login")
+	 public String login() {
+	    return "login";
+	 }
+	
 	@RequestMapping(value ="/logout")
 	public String logout(HttpSession session) {
 		session.invalidate(); //세션 삭제 => logout
@@ -82,9 +92,6 @@ public class TravelController {
 	        return "redirect:login"; // 로그인 실패 시 로그인 페이지로 이동
 	    }
 	}
- @RequestMapping (value="/login")
- public String login() {
-    return "login";
- }
+ 
 	
 }
