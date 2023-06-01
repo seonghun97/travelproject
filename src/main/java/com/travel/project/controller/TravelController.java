@@ -18,21 +18,19 @@ public class TravelController {
 	private SqlSession sqlsession;
 	
 	@RequestMapping("/join")
-	   private String joinOk() {
+	   private String join() {
 	      return "join";
 	   }
-	   
-	   @RequestMapping ("/joinOk")
-	      public String join(HttpServletRequest request, Model model) {
-	      String userid = request.getParameter("userid");
-	      String userpw = request.getParameter("userpw");
-	      String username = request.getParameter("username");
-	      String userbirth = request.getParameter("userbirth");
-	      String useremail = request.getParameter("useremail");
-	      String usermobile = request.getParameter("usermobile");
-	      
-	      IDao dao = sqlsession.getMapper(IDao.class);
-
+	@RequestMapping ("/joinOk")
+		public String joinOk(HttpServletRequest request, Model model) {
+		String userid = request.getParameter("userid");
+		String userpw = request.getParameter("userpw");
+		String username = request.getParameter("username");
+		String userbirth = request.getParameter("userbirth");
+		String useremail = request.getParameter("useremail");
+		String usermobile = request.getParameter("usermobile");
+		
+		IDao dao = sqlsession.getMapper(IDao.class);
 	      int joinCheck = 0;
 	      
 	      int checkId = dao.checkIdDao(userid); //가입하려는 id 존재여부 체크 1이면 이미 존재
@@ -55,30 +53,38 @@ public class TravelController {
 	      
 	      return "joinOk";
 	      }
-	   @RequestMapping (value="/loginOk")
-	   	private String loginOk(HttpServletRequest request, Model model, HttpSession session) {
-		   String userid = request.getParameter("userid");
-		   String userpw = request.getParameter("userpw");
-		   
-		   IDao dao = sqlsession.getMapper(IDao.class);
-		   
-		   int checkIdPwFlag = dao.checkIdPwDao(userid, userpw);
-		   //1이면 성공, 0이면 실패
-		   model.addAttribute("checkIdPwFlag", checkIdPwFlag);
-		   
-		   if(checkIdPwFlag == 1) {
-			  session.setAttribute("sessionId",userid);
-			  model.addAttribute("UserDto", dao.getMemberInfo(userid));
-			  return "index";
-		   }
-		   else 
-		   {
-			   
-			  return "loginOk";
-		   }
-	   }
-	   @RequestMapping (value="/login")
-	   private String login() {
-		   return "login";
-	   }
+
+	@RequestMapping (value="/login")
+	 public String login() {
+	    return "login";
+	 }
+	
+	@RequestMapping(value ="/logout")
+	public String logout(HttpSession session) {
+		session.invalidate(); //세션 삭제 => logout
+		
+		return "redirect:login";
+	}
+
+	@RequestMapping(value = "/loginOk")
+	public String loginOk(HttpServletRequest request, Model model, HttpSession session) {
+	    String userid = request.getParameter("userid");
+	    String userpw = request.getParameter("userpw");
+
+	    IDao dao = sqlsession.getMapper(IDao.class);
+
+	    int checkIdPwFlag = dao.checkIdPwDao(userid, userpw);
+	    // 1이면 성공, 0이면 실패
+	    model.addAttribute("checkIdPwFlag", checkIdPwFlag);
+
+	    if (checkIdPwFlag == 1) {
+	        session.setAttribute("sessionId", userid);
+	        model.addAttribute("UserDto", dao.getMemberInfo(userid));
+	        return "index";
+	    } else {
+	        return "redirect:login"; // 로그인 실패 시 로그인 페이지로 이동
+	    }
+	}
+ 
+	
 }

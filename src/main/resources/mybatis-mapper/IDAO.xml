@@ -14,7 +14,13 @@
 	<select id="checkIdPwDao" resultType="int">
 		SELECT COUNT(*) FROM usertbl WHERE userid=#{param1} and userpw=#{param2}
 	</select>
+<<<<<<< HEAD
     <select id="getMemberInfo" resultType="com.travel.project.dto.UserDto">
       SELECT * FROM usertbl WHERE userid=#{param1}
    </select>
+=======
+		<select id="getMemberInfo" resultType="com.travel.project.dto.UserDto">
+		SELECT * FROM usertbl2 WHERE userid=#{param1}
+	</select>
+>>>>>>> refs/remotes/origin/master
 </mapper>
