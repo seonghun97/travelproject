@@ -1,12 +1,14 @@
 package com.travel.project.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.travel.project.dao.IDao;
@@ -24,6 +26,16 @@ public class TravelController {
 	@RequestMapping("/index")
 	private String index() {
 		return "index";
+	}
+	@RequestMapping (value="/login")
+	 public String login() {
+	    return "login";
+	 }
+	@RequestMapping(value ="/logout")
+	public String logout(HttpSession session) {
+		session.invalidate(); //세션 삭제 => logout
+		
+		return "redirect:index";
 	}
 	
 	
@@ -61,17 +73,6 @@ public class TravelController {
 		return "joinOk";
 		}
 
-	@RequestMapping (value="/login")
-	 public String login() {
-	    return "login";
-	 }
-	
-	@RequestMapping(value ="/logout")
-	public String logout(HttpSession session) {
-		session.invalidate(); //세션 삭제 => logout
-		
-		return "redirect:index";
-	}
 
 	@RequestMapping(value = "/loginOk")
 	public String loginOk(HttpServletRequest request, Model model, HttpSession session) {
@@ -93,5 +94,14 @@ public class TravelController {
 	    }
 	}
  
-	
+	@GetMapping("/board")
+	public String board(HttpServletRequest request, HttpSession session) {
+	    session = request.getSession(false);
+	    if (session == null || session.getAttribute("sessionId") == null) {
+	        // 로그인 세션이 없으면 경고창을 띄우고 로그인 페이지로 이동
+	        return "redirect:/login";
+	    }
+	    // 로그인 세션이 있는 경우 문의게시판 페이지로 이동
+	    return "board";
+	}
 }
