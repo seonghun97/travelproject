@@ -70,7 +70,7 @@ public class TravelController {
 	public String logout(HttpSession session) {
 		session.invalidate(); //세션 삭제 => logout
 		
-		return "redirect:login";
+		return "redirect:index";
 	}
 
 	@RequestMapping(value = "/loginOk")
