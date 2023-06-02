@@ -8,8 +8,8 @@
 </head>
 <body>
 	<form action="/processForm" method="POST">
-	    <input type="radio" name="location" value="airplain"> 공항<br>
-		<input type="radio" name="location" value="accommodation"> 숙소<br>
+	    <input type="radio" name="location" value="airplain"> 공항
+		<input type="radio" name="location" value="accommodation"> 숙소
 		<select name="city">
             <c:forEach items="${cities}" var="city">
                 <option value="${city}">${city}</option>

@@ -137,6 +137,15 @@ public class TravelController<JSONArray> {
 	     }
 	     return "redirect:/index";
 	 }
+	 @RequestMapping("/board")
+	 public String board() {
+		 return "board";
+	 }
+	 
+	 @RequestMapping("/review")
+	 public String review() {
+		 return "review";
+	 }
 	}
 	
 

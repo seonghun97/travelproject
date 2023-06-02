@@ -37,6 +37,8 @@
     	<tr>
     		<td><a href="airplain">항공예매</a></td>
     		<td><a href="accommodation">숙소예매</a></td>
+    		<td><a href="board">문의게시판</a></td>
+    		<td><a href="review">후기게시판</a></td>
     	</tr>
     		
     </table>
