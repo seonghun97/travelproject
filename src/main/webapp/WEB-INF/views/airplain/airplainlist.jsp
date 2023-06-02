@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	보드페이지 이페이지가 보이면 세션값이 잘되있는것
+	항공관련
 </body>
 </html>
