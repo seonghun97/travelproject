@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="include/header.jsp" %>
 	<table border ="0" cellspacing="10">
 		 <form action="joinOk" method="post" name="join_frm"> 
 		  		<tr>
@@ -42,6 +43,7 @@
 		  			<td colspan="2" align="center">
 		  				<input type="button" value="가입완료"onclick = "joinCheck()">&nbsp;&nbsp;
 		  				<input type="button" value="로그인">
+		  				
 		  			</td>
 		  		</tr>
 		  	</form>
