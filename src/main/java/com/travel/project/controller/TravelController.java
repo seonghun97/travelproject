@@ -47,6 +47,10 @@ public class TravelController<JSONArray> {
 		
 		return "redirect:index";
 	}
+	@RequestMapping(value ="/cal")
+	public String cal() {
+		return "cal";
+	}
 	
 	
 	@RequestMapping ("/joinOk")

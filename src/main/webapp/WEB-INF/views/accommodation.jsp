@@ -17,6 +17,5 @@
         </select>
         <input type="submit" value="선택">
 	</form>
-       
 </body>
 </html>
