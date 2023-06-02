@@ -85,6 +85,15 @@ public class TravelController {
  @RequestMapping (value="/login")
  public String login() {
     return "login";
+    
+    
+ }
+ 
+
+ 
+ @RequestMapping (value = "/question")
+ public String question() {
+	 return "question"; // 게시판 이동 
  }
 	
 }
