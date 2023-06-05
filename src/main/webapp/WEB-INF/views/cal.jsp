@@ -13,6 +13,8 @@
         .scriptCalendar > tbody > tr > td { width:50px;height:50px; }
         .calendarBtn { cursor:pointer; }
     </style>
+    <form id="calendarForm" action="/processCalendar" method="POST">
+    <input type="hidden" id="selectedDate" name="selectedDate">
     <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function() {
             buildCalendar();
@@ -28,6 +30,7 @@
 
         var toDay = new Date(); // @param 전역 변수, 오늘 날짜 / 내 컴퓨터 로컬을 기준으로 toDay에 Date 객체를 넣어줌
         var nowDate = new Date();  // @param 전역 변수, 실제 오늘날짜 고정값
+        var selectedDates = [];
 
         /**
          * @brief   이전달 버튼 클릭시
@@ -235,5 +238,6 @@
         <tbody>
         </tbody>
     </table>
+    </form>
 </body>
 </html>
