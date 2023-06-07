@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class AirplainDto {
+public class AirplaneDto {
 	private int airnum; //항공번호 (기본키)
 	private String airname; //항공사명
 	private String airstart; //출발장소

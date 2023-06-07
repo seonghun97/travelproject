@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
- 	숙소관련
+ 	asdas
 </body>
 </html>

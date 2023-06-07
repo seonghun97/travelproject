@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.travel.project.dao.IDao;
+import com.travel.project.dto.AccommodationDto;
 
 
 @Controller
@@ -126,24 +127,16 @@ public class TravelController<JSONArray> {
 	        return "accommodation";
 	    }
 	 
-	 @PostMapping("/processForm")
-	 public String processForm(@RequestParam(name = "location") String location,
-	                           @RequestParam(name = "startDate", required = false) String startDate,
-	                           @RequestParam(name = "city", required = false) String city,
-	                           HttpServletRequest request) {
-	     if (location.equals("airplain") && startDate != null && !startDate.isEmpty() && city != null) {
-	         // 비행기 + 날짜 + 도시를 선택한 경우, 해당 날짜와 도시로 향하는 비행기 목록이 표시
-	         // startDate를 원하는 방식으로 처리
-	         request.setAttribute("startDate", startDate); // 예시: request에 startDate를 저장
-
-	         return "airplain/airplainlist"; // 예시: 비행기 목록 페이지로 이동
-	     } else if (location.equals("accommodation") && city != null) {
-	         // 숙소 + 도시를 선택한 경우, 선택한 도시에 있는 모든 숙소가 표시
-	         return "accommodation/accommodationlist"; // 예시: 숙소 목록 페이지로 이동
-	     }
-
-	     return "redirect:accommodation"; // 폼 페이지로 리디렉션합니다.
+	 @PostMapping("/AccommodationForm")
+	 	public String accform() {
+		 return "accommodation/accommodationlist";
 	 }
+
+	 @PostMapping("/AirplaneForm")
+	 	public String airform() {
+		 return "airplane/airplanelist";
+	 }
+	   
 	 @RequestMapping("/board")
 	 public String board() {
 		 return "board";
