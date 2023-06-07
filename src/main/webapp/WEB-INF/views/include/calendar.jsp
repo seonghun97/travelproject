@@ -58,7 +58,7 @@
 </head>
 <body>
       오늘 날짜: <span id="today"></span>
-    <form id="reservationForm" action="join" method="post">
+    <form id="reservationForm" action="/AirplaneForm" method="post">
         <label for="fromDate">출발일</label>
         <input type="text" name="fromDate" id="fromDate">
         ~

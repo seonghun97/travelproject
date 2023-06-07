@@ -13,7 +13,7 @@ public interface IDao {
 		
 		
 		//숙소관련
-		public List<AccommodationDto> accomcodeList(String city);
+		public List<AccommodationDto> accomcityListDao(String cityname); //도시이름으로 숙소갖고오기
 	}
 
 
