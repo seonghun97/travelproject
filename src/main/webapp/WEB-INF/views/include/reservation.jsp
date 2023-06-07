@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>숙소 페이지</title>
+    <title>예약</title>
 <script>
 	function changeFormAction(locationValue) {
 	    var form = document.getElementById("locationForm");

@@ -48,6 +48,7 @@
 	 }
 	 document.join_frm.submit();
  }
+ 	
 
 
 
