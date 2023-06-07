@@ -119,12 +119,12 @@ public class TravelController<JSONArray> {
 	    // 로그인 세션이 있는 경우 문의게시판 페이지로 이동
 	    return "mypage";
 	}
-	 @RequestMapping("/accommodation")
+	 @RequestMapping("/reservation")
 	    public String showAccommodationPage(Model model) {
 	        String[] cities = {"--도시를선택해주세요--","도쿄", "쿄토", "오사카", "오키나와", "삿포루", "요코하마", "나고야"};
 	        model.addAttribute("cities", cities);
 	        	
-	        return "accommodation";
+	        return "index";
 	    }
 	 
 	 @PostMapping("/AccommodationForm")

@@ -39,24 +39,6 @@
         return true;
     }
 
-
-
-    function openCalendar(dateType) {
-        var calendarWindow = window.open("cal?dateType=" + dateType, "_blank", "width=800,height=600");
-        calendarWindow.addEventListener("message", function(event) {
-            var selectedDate = event.data;
-            if (selectedDate) {
-                var button;
-                if (dateType === "startDate") {
-                    button = document.getElementById("departureButton");
-                } else if (dateType === "endDate") {
-                    button = document.getElementById("returnButton");
-                }
-                button.innerText = selectedDate;
-                calendarWindow.close();
-            }
-        });
-    }
 </script>
 </head>    
 <body>
@@ -70,8 +52,5 @@
     </select>
     <input type="submit" value="선택">
 </form>
-    <button id="departureButton" onclick="openCalendar('startDate')">가는날</button>
-    <button id="returnButton" onclick="openCalendar('endDate')">오는날</button>
-    
 </body>
 </html>

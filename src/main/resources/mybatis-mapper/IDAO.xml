@@ -15,7 +15,10 @@
 	<select id="checkIdPwDao" resultType="int">
 		SELECT COUNT(*) FROM usertbl2 WHERE userid=#{param1} and userpw=#{param2}
 	</select>
-		<select id="getMemberInfo" resultType="com.travel.project.dto.UserDto">
+	<select id="getMemberInfo" resultType="com.travel.project.dto.UserDto">
 		SELECT * FROM usertbl2 WHERE userid=#{param1}
+	</select>
+	<select id="accomcodeList" resultType="com.travel.project.dto.AccommodationDto">
+		SELECT * FROM Accommodationtbl WHERE cityname=#{param1}
 	</select>
 </mapper>

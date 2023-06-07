@@ -8,6 +8,9 @@
 </head>
 <body>
   <%@  include file= "include/header.jsp" %>
+  <%@  include file= "include/reservation.jsp" %>
+  <%@  include file= "include/calendar.jsp" %>
+  
   
   
  
