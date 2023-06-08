@@ -12,7 +12,7 @@ public class ReservationDto {
 	private int resnum; //숙박예약번호(기본키)
 	private String checkindate; //체크인날짜
 	private String checkoutdate;// 체크아웃날짜
-	private String resprice; //숙박가격
+	private int resprice; //숙박가격
 	private String userid; //사용자아이디(외래키)
 	private String accomcode; //숙소코드(외래키)
 }

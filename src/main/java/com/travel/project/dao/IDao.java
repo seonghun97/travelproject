@@ -17,8 +17,8 @@ public interface IDao {
 		public AccommodationDto accomviewDao(String accomcode);  //숙소코드로 숙소갖고오기
 		
 		//숙소예약
-		public void reservationDao(String checkindate, String checkoutdate, 
-				int resprice, String userid, String accomcode); 
+		public void reservationDao(String checkindate, String checkoutdate,
+				int resprice, String userid, String accomcode);
 	}
 
 

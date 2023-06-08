@@ -29,7 +29,7 @@
                     <td>${accommodation.accomname}</td>
                     <td><img src="${accommodation.accompic}" alt="숙소 사진"></td>
                     <td>
-                    <a href="accommodationview?accomcode=${accommodation.accomcode}">
+                    <a href="accommodationview?accomcode=${accommodation.accomcode}&fromDate=${fromDate}&toDate=${toDate}">
                         <c:choose>
                         <c:when test="${fn:length(accommodation.accomdes) > 30}">
                             <c:out value="${fn:substring(accommodation.accomdes, 0, 29)}"></c:out>...

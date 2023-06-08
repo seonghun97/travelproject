@@ -6,26 +6,28 @@
 <mapper namespace="com.travel.project.dao.IDao">
     <!-- 회원 관련  -->
 	<insert id="joinDao">
-		INSERT INTO usertbl2(userid, userpw, username, userbirth, useremail, usermobile) 
+		INSERT INTO usertbl(userid, userpw, username, userbirth, useremail, usermobile) 
 		VALUES (#{param1},#{param2},#{param3}, #{param4}, #{param5}, #{param6})	
 	</insert>
 	<select id="checkIdDao" resultType="int">
-		SELECT COUNT(*) FROM usertbl2 WHERE userid=#{param1}
+		SELECT COUNT(*) FROM usertbl WHERE userid=#{param1}
 	</select>
 	<select id="checkIdPwDao" resultType="int">
-		SELECT COUNT(*) FROM usertbl2 WHERE userid=#{param1} and userpw=#{param2}
+		SELECT COUNT(*) FROM usertbl WHERE userid=#{param1} and userpw=#{param2}
 	</select>
 	<select id="getMemberInfo" resultType="com.travel.project.dto.UserDto">
-		SELECT * FROM usertbl2 WHERE userid=#{param1}
+		SELECT * FROM usertbl WHERE userid=#{param1}
 	</select>
 	<select id="accomcityListDao" resultType="com.travel.project.dto.AccommodationDto">
 		SELECT * FROM Accommodationtbl WHERE cityname = #{param1} ORDER BY accomname asc
 	</select>
+	
 	<select id="accomviewDao" resultType="com.travel.project.dto.AccommodationDto">
-		SELECT * FROM Accommodationtbl WHERE accomcode = #{param1}
+    	SELECT * FROM Accommodationtbl WHERE accomcode = #{param1}
 	</select>
+
 	<insert id="reservationDao">
-		INSERT * FROM reservationtbl(resnum, checkindate, checkoutdate, resprice, userid, accomcode)
-			VALUES(res_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5} )
+	    INSERT INTO reservationtbl (resnum, checkindate, checkoutdate, resprice, userid, accomcode)
+	    VALUES (res_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5})
 	</insert>
 </mapper>

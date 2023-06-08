@@ -2,6 +2,8 @@ package com.travel.project.controller;
 
 import java.io.IOException;
 import java.lang.StackWalker.Option;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -160,20 +162,71 @@ public class TravelController<JSONArray> {
 	 @RequestMapping("/accommodationview")
 	 public String accomview(HttpServletRequest request, Model model) {
 		 
-	     IDao dao = sqlsession.getMapper(IDao.class);
-	     
-	     AccommodationDto accommodationDto = dao.accomviewDao(request.getParameter("accomcode"));
-	     
-	     model.addAttribute("accommodation", accommodationDto);
-	     
-	     return "accommodation/accommodationview";
+		 IDao dao = sqlsession.getMapper(IDao.class);
+
+		 AccommodationDto accommodationDto = dao.accomviewDao(request.getParameter("accomcode"));
+
+		 model.addAttribute("accommodation", accommodationDto);
+
+		 // 예약 날짜 가져오기
+		 String fromDate = request.getParameter("fromDate");
+		 String toDate = request.getParameter("toDate");
+		 model.addAttribute("fromDate", fromDate);
+		 model.addAttribute("toDate", toDate);
+
+		 return "accommodation/accommodationview";
 	 }
+	
 	 @RequestMapping("/reservationOk")
-	 public String reservation(HttpServletRequest request, HttpSession session) {
-	    
+	 public String reservation(HttpServletRequest request, HttpSession session, Model model) {
+	     // 세션에서 로그인된 사용자의 아이디를 가져옴
+	     String userid = (String) session.getAttribute("sessionId");
+
+	     // accommodationView 페이지에서 전송된 파라미터를 가져옴
+	     String checkindate = request.getParameter("fromDate");
+	     String checkoutdate = request.getParameter("toDate");
+	     String accomcode = request.getParameter("accomcode");
+
+	     if (checkindate == null || checkindate.isEmpty() || checkoutdate == null || checkoutdate.isEmpty()) {
+	         // 오류 메시지 설정
+	         model.addAttribute("error", "체크인 날짜와 체크아웃 날짜를 선택해주세요.");
+	         return "reservationError";
+	     }
+	      
+	     if (userid == null || accomcode == null) {
+	         // 오류 메시지 설정
+	         model.addAttribute("error", "사용자 정보나 숙박 정보가 올바르지 않습니다.");
+	         return "reservationError";
+	     }
+
+	     // 숙박 가격을 가져옴
+	     String respriceParam = request.getParameter("resprice");
+	     int resprice;
+	     if (respriceParam != null && !respriceParam.isEmpty()) {
+	         resprice = Integer.parseInt(respriceParam);
+	     } else {
+	         // 오류 처리
+	         model.addAttribute("error", "숙박 가격을 선택해주세요.");
+	         return "reservationError";
+	     }
 	     
+	     // 체크인 날짜와 체크아웃 날짜 사이의 일수 계산
+	     LocalDate fromDate = LocalDate.parse(checkindate);
+	     LocalDate toDate = LocalDate.parse(checkoutdate);
+	     int nights = (int) ChronoUnit.DAYS.between(fromDate, toDate);
+
+	     // 예약 가격 계산
+	     int totalprice = resprice * nights;
+	     
+	     IDao dao = sqlsession.getMapper(IDao.class);
+	     dao.reservationDao(checkindate, checkoutdate, totalprice, userid, accomcode); // resnum 값을 받아옴
+
+	     model.addAttribute("fromDate", checkindate);
+	     model.addAttribute("toDate", checkoutdate);
+	     model.addAttribute("resprice", totalprice);
+
 	     return "reservationOk";
 	 }
-	}
+}
 	
 
