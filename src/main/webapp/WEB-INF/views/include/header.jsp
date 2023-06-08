@@ -31,7 +31,7 @@
             <% if (sessionId == null) { %>
             <td>&nbsp;</td>
             <% } else { %>
-            <td colspan="15" align="right"><b><c:out value="${sessionId}"/>님 로그인 중입니다.</b></td>
+            <td colspan="10" align="right"><b><c:out value="${sessionId}"/>님 로그인 중입니다.</b></td>
             <% } %>
         </tr>
     </table>

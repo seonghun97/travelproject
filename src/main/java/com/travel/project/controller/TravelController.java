@@ -168,6 +168,12 @@ public class TravelController<JSONArray> {
 	     
 	     return "accommodation/accommodationview";
 	 }
+	 @RequestMapping("/reservationOk")
+	 public String reservation(HttpServletRequest request, HttpSession session) {
+	    
+	     
+	     return "reservationOk";
+	 }
 	}
 	
 

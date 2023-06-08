@@ -24,4 +24,8 @@
 	<select id="accomviewDao" resultType="com.travel.project.dto.AccommodationDto">
 		SELECT * FROM Accommodationtbl WHERE accomcode = #{param1}
 	</select>
+	<insert id="reservationDao">
+		INSERT * FROM reservationtbl(resnum, checkindate, checkoutdate, resprice, userid, accomcode)
+			VALUES(res_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5} )
+	</insert>
 </mapper>
