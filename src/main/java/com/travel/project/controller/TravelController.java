@@ -124,12 +124,16 @@ public class TravelController<JSONArray> {
 	public String accform(Model model, HttpServletRequest request, HttpSession session) {
 
 	    String cityname = request.getParameter("city");
+	    String fromDate = request.getParameter("fromDate");
+	    String toDate = request.getParameter("toDate");
 
 	    IDao dao = sqlsession.getMapper(IDao.class);
 
 	    List<AccommodationDto> accommodationDtos = dao.accomcityListDao(cityname);
 
 	    model.addAttribute("accommodationDtos", accommodationDtos);
+	    model.addAttribute("fromDate", fromDate);
+	    model.addAttribute("toDate", toDate);
 
 	    return "accommodation/accommodationlist";
 	}
@@ -151,6 +155,18 @@ public class TravelController<JSONArray> {
 	 @RequestMapping("/test")
 	 public String test() {
 		 return "test";
+	 }
+	 
+	 @RequestMapping("/accommodationview")
+	 public String accomview(HttpServletRequest request, Model model) {
+		 
+	     IDao dao = sqlsession.getMapper(IDao.class);
+	     
+	     AccommodationDto accommodationDto = dao.accomviewDao(request.getParameter("accomcode"));
+	     
+	     model.addAttribute("accommodation", accommodationDto);
+	     
+	     return "accommodation/accommodationview";
 	 }
 	}
 	

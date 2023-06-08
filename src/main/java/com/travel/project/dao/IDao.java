@@ -14,6 +14,7 @@ public interface IDao {
 		
 		//숙소관련
 		public List<AccommodationDto> accomcityListDao(String cityname); //도시이름으로 숙소갖고오기
+		public AccommodationDto accomviewDao(String accomcode);  //숙소코드로 숙소갖고오기
 	}
 
 

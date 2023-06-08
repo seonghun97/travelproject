@@ -21,4 +21,7 @@
 	<select id="accomcityListDao" resultType="com.travel.project.dto.AccommodationDto">
 		SELECT * FROM Accommodationtbl WHERE cityname = #{param1} ORDER BY accomname asc
 	</select>
+	<select id="accomviewDao" resultType="com.travel.project.dto.AccommodationDto">
+		SELECT * FROM Accommodationtbl WHERE accomcode = #{param1}
+	</select>
 </mapper>

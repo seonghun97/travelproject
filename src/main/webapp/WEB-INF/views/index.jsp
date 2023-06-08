@@ -9,7 +9,6 @@
 <body>
   <%@  include file= "include/header.jsp" %><br><br>
   <%@  include file= "include/reservation.jsp" %>
-  <%@  include file= "include/calendar.jsp" %>
   
   
   

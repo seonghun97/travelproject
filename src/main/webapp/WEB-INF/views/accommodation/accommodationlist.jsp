@@ -9,6 +9,7 @@
 </head>
 <body>
     <h1>숙소 목록</h1>
+    <p>선택한 예약 날짜: ${fromDate}부터 ${toDate}</p>
     <table>
         <thead>
             <tr>
@@ -28,16 +29,16 @@
                     <td>${accommodation.accomname}</td>
                     <td><img src="${accommodation.accompic}" alt="숙소 사진"></td>
                     <td>
-                    <a href="contentView?bnum=${dto.bnum }">
-						<c:choose>
-						<c:when test="${fn:length(accommodation.accomdes) > 30}">
-						<c:out value="${fn:substring(accommodation.accomdes,0,29)}"></c:out>...
-						</c:when>
-						<c:otherwise>
-						<c:out value="${accommodation.accomdes}"></c:out>
-						</c:otherwise>
-						</c:choose>
-						</a>
+                    <a href="accommodationView?accomcode=${accommodation.accomcode}">
+                        <c:choose>
+                        <c:when test="${fn:length(accommodation.accomdes) > 30}">
+                            <c:out value="${fn:substring(accommodation.accomdes, 0, 29)}"></c:out>...
+                        </c:when>
+                        <c:otherwise>
+                            <c:out value="${accommodation.accomdes}"></c:out>
+                        </c:otherwise>
+                        </c:choose>
+                    </a>
                     </td>
                     <td>${accommodation.accomlocation}</td>
                     <td>${accommodation.accomnotice}</td>
