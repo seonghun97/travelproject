@@ -22,8 +22,8 @@ public interface IDao {
 				int resprice, String userid, String accomcode);
 		
 		//예약한 숙소 불러오기
-		public ReservationDto reservationCheck(String userid);
-		public AccommodationDto accommodationInfo(String accomcode);	
+		public List<ReservationDto> reservationCheck(String userid);
+		public List<AccommodationDto> accommodationInfo(String accomcode);
 	}
 
 

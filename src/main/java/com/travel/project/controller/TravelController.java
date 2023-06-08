@@ -119,16 +119,21 @@ public class TravelController<JSONArray> {
 	        // 로그인 세션이 없으면 경고창을 띄우고 로그인 페이지로 이동
 	        return "redirect:/login";
 	    }
-	    // 로그인 세션이 있는 경우 문의게시판 페이지로 이동
-	    IDao dao = sqlsession.getMapper(IDao.class);
 	    
+	    // 로그인 세션이 있는 경우 마이페이지로 이동
+	    IDao dao = sqlsession.getMapper(IDao.class);
 	    String userid = (String) session.getAttribute("sessionId");
 	    
-	    ReservationDto reservationDto = dao.reservationCheck(userid);
-	    AccommodationDto accommodationDto = dao.accommodationInfo(reservationDto.getAccomcode());
+	    List<ReservationDto> reservationList = dao.reservationCheck(userid);
+	    List<AccommodationDto> accommodationList = new ArrayList<>();
 	    
-	    model.addAttribute("reservationDto", reservationDto);
-	    model.addAttribute("accommodationDto", accommodationDto);
+	    for (ReservationDto reservationDto : reservationList) {
+	        List<AccommodationDto> accommodationInfo = dao.accommodationInfo(reservationDto.getAccomcode());
+	        accommodationList.addAll(accommodationInfo);
+	    }
+	    
+	    model.addAttribute("reservationList", reservationList);
+	    model.addAttribute("accommodationList", accommodationList);
 	    
 	    return "mypage";
 	}

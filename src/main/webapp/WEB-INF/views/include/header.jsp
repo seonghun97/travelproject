@@ -25,7 +25,6 @@
         <% } else { %>
         <% } %>
         <td class="headertext"><a href="mypage" onclick="checkLogin()">마이페이지</a></td><br><br>
-       	    <td><a href="board">문의게시판</a></td>
     		<td><a href="review">후기게시판</a></td>
         <tr>
             <% if (sessionId == null) { %>
