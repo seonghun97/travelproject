@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.travel.project.dao.IDao;
 import com.travel.project.dto.AccommodationDto;
+import com.travel.project.dto.ReservationDto;
 
 
 @Controller
@@ -112,16 +113,25 @@ public class TravelController<JSONArray> {
 	}
  
 	@GetMapping("/mypage")
-	public String mypage(HttpServletRequest request, HttpSession session) {
+	public String mypage(HttpServletRequest request, HttpSession session, Model model) {
 	    session = request.getSession(false);
 	    if (session == null || session.getAttribute("sessionId") == null) {
 	        // 로그인 세션이 없으면 경고창을 띄우고 로그인 페이지로 이동
 	        return "redirect:/login";
 	    }
 	    // 로그인 세션이 있는 경우 문의게시판 페이지로 이동
+	    IDao dao = sqlsession.getMapper(IDao.class);
+	    
+	    String userid = (String) session.getAttribute("sessionId");
+	    
+	    ReservationDto reservationDto = dao.reservationCheck(userid);
+	    AccommodationDto accommodationDto = dao.accommodationInfo(reservationDto.getAccomcode());
+	    
+	    model.addAttribute("reservationDto", reservationDto);
+	    model.addAttribute("accommodationDto", accommodationDto);
+	    
 	    return "mypage";
 	}
-	 
 	@RequestMapping(value = "/AccommodationForm")
 	public String accform(Model model, HttpServletRequest request, HttpSession session) {
 

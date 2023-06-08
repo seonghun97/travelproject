@@ -3,6 +3,7 @@ package com.travel.project.dao;
 import java.util.List;
 
 import com.travel.project.dto.AccommodationDto;
+import com.travel.project.dto.ReservationDto;
 import com.travel.project.dto.UserDto; 
 public interface IDao {
 		public int joinDao(String userid, String userpw,String username
@@ -19,6 +20,10 @@ public interface IDao {
 		//숙소예약
 		public void reservationDao(String checkindate, String checkoutdate,
 				int resprice, String userid, String accomcode);
+		
+		//예약한 숙소 불러오기
+		public ReservationDto reservationCheck(String userid);
+		public AccommodationDto accommodationInfo(String accomcode);	
 	}
 
 
