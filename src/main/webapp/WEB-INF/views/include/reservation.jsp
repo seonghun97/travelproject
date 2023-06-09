@@ -118,14 +118,5 @@
         <input type="text" name="toDate" id="toDate">
         <input type="submit" value="선택">
     </form>
-     <!--  오늘 날짜: <span id="today"></span>
-    <form id="reservationForm" action="/AirplaneForm" method="post">
-        <label for="fromDate">출발일</label>
-        <input type="text" name="fromDate" id="fromDate">
-        ~
-        <label for="toDate">도착일</label>
-        <input type="text" name="toDate" id="toDate">
-        <input type="submit" value="예약하기">
-    </form> -->     
 </body>
 </html>

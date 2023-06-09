@@ -66,6 +66,8 @@ public class TravelController<JSONArray> {
 		String useremail = request.getParameter("useremail");
 		String usermobile = request.getParameter("usermobile");
 		
+		usermobile = usermobile.replaceAll("-", "");
+		
 		IDao dao = sqlsession.getMapper(IDao.class);
 
 		int joinCheck = 0;
@@ -160,7 +162,6 @@ public class TravelController<JSONArray> {
 		 AccommodationDto accommodationDto = dao.accomviewDao(request.getParameter("accomcode"));
 
 		model.addAttribute("accommodation", accommodationDto);
-//		model.addAttribute("",)
 	    request.setAttribute("reservationList", reservationList);
 	    request.setAttribute("accommodationList", accommodationList);
 	    request.setAttribute("selectedReservation", selectedReservation);
