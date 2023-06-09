@@ -31,9 +31,15 @@
 	    VALUES (res_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5})
 	</insert>
 	<select id="reservationCheck" resultType="com.travel.project.dto.ReservationDto">
-		SELECT * FROM reservationtbl where userid =#{param1}
+		SELECT * FROM reservationtbl where userid =#{param1} 
 	</select> 
 	<select id="accommodationInfo" resultType="com.travel.project.dto.AccommodationDto">
    		 SELECT * FROM accommodationtbl WHERE accomcode = #{param1}
+	</select>
+	<delete id="resercancelDao">
+		DELETE reservationtbl where resnum =#{param1}
+	</delete>
+	<select id="getReservationByResnum" resultType="com.travel.project.dto.ReservationDto">
+	    SELECT * FROM reservationtbl WHERE resnum = #{resnum}
 	</select>
 </mapper>

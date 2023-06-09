@@ -16,6 +16,7 @@ public interface IDao {
 		//숙소관련
 		public List<AccommodationDto> accomcityListDao(String cityname); //도시이름으로 숙소갖고오기
 		public AccommodationDto accomviewDao(String accomcode);  //숙소코드로 숙소갖고오기
+		public void resercancelDao(String userid);
 		
 		//숙소예약
 		public void reservationDao(String checkindate, String checkoutdate,
@@ -24,6 +25,7 @@ public interface IDao {
 		//예약한 숙소 불러오기
 		public List<ReservationDto> reservationCheck(String userid);
 		public List<AccommodationDto> accommodationInfo(String accomcode);
+		public ReservationDto getReservationByResnum(String resnum);
 	}
 
 

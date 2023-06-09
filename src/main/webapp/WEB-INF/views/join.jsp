@@ -42,7 +42,7 @@
 		  		<tr>
 		  			<td colspan="2" align="center">
 		  				<input type="button" value="가입완료"onclick = "joinCheck()">&nbsp;&nbsp;
-		  				<input type="button" value="로그인">
+		  				<input type="button" value="로그인" onclick="script:window.location.href='login'">
 		  				
 		  			</td>
 		  		</tr>

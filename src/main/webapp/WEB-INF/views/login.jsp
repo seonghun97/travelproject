@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@  include file= "include/header.jsp" %><br><br>
 	<form action="loginOk" method="post">
 	<table border="0" cellspacing="0" cellpadding="10">
 			<tr>

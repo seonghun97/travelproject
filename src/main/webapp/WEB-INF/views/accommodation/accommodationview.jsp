@@ -28,9 +28,12 @@
                 <td><textarea class="textareabox" rows="8" cols="30" name="accomdes" readonly="readonly">${accommodation.accomdes}</textarea></td>
             </tr>
             <tr>
-                <td>숙소 위치:</td>
-                <td><input type="text" name="accomlocation" value="${accommodation.accomlocation}" readonly="readonly"></td>
-            </tr>
+			    <td>숙소 위치:</td>
+			    <td>
+			        <input type="text" id="accomlocation" name="accomlocation" value="${accommodation.accomlocation}" readonly="readonly">
+			        <div id="map"></div>
+			    </td>
+			</tr>
             <tr>
                 <td>숙박 가격:</td>
                 <td><input type="text" name="resprice" value="${accommodation.accomprice}" readonly="readonly"></td>

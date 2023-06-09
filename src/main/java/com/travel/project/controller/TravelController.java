@@ -92,8 +92,8 @@ public class TravelController<JSONArray> {
 		}
 
 
-	@RequestMapping(value = "/loginOk")
-	public String loginOk(HttpServletRequest request, Model model, HttpSession session) {
+	@PostMapping(value = "/loginOk")
+	public String loginOk(HttpServletRequest request, HttpSession session) {
 	    String userid = request.getParameter("userid");
 	    String userpw = request.getParameter("userpw");
 
@@ -101,17 +101,17 @@ public class TravelController<JSONArray> {
 
 	    int checkIdPwFlag = dao.checkIdPwDao(userid, userpw);
 	    // 1이면 성공, 0이면 실패
-	    model.addAttribute("checkIdPwFlag", checkIdPwFlag);
+	    request.setAttribute("checkIdPwFlag", checkIdPwFlag);
 
 	    if (checkIdPwFlag == 1) {
 	        session.setAttribute("sessionId", userid);
-	        model.addAttribute("UserDto", dao.getMemberInfo(userid));
-	        return "index";
+	        request.setAttribute("UserDto", dao.getMemberInfo(userid));
+	        return "redirect:/index"; 
 	    } else {
-	        return "redirect:login"; // 로그인 실패 시 로그인 페이지로 이동
+	        return "loginOk";
 	    }
 	}
- 
+	
 	@GetMapping("/mypage")
 	public String mypage(HttpServletRequest request, HttpSession session, Model model) {
 	    session = request.getSession(false);
@@ -119,24 +119,56 @@ public class TravelController<JSONArray> {
 	        // 로그인 세션이 없으면 경고창을 띄우고 로그인 페이지로 이동
 	        return "redirect:/login";
 	    }
-	    
-	    // 로그인 세션이 있는 경우 마이페이지로 이동
 	    IDao dao = sqlsession.getMapper(IDao.class);
 	    String userid = (String) session.getAttribute("sessionId");
 	    
 	    List<ReservationDto> reservationList = dao.reservationCheck(userid);
 	    List<AccommodationDto> accommodationList = new ArrayList<>();
 	    
-	    for (ReservationDto reservationDto : reservationList) {
-	        List<AccommodationDto> accommodationInfo = dao.accommodationInfo(reservationDto.getAccomcode());
-	        accommodationList.addAll(accommodationInfo);
-	    }
-	    
 	    model.addAttribute("reservationList", reservationList);
 	    model.addAttribute("accommodationList", accommodationList);
 	    
 	    return "mypage";
 	}
+	@GetMapping("/reserview")
+	public String reserview(@RequestParam int resnum, HttpServletRequest request, HttpSession session, Model model) {
+	    session = request.getSession(false);
+	    if (session == null || session.getAttribute("sessionId") == null) {
+	        // 로그인 세션이 없으면 경고창을 띄우고 로그인 페이지로 이동
+	        return "redirect:/login";
+	    }
+
+	    IDao dao = sqlsession.getMapper(IDao.class);
+	    String userid = (String) session.getAttribute("sessionId");
+
+	    List<ReservationDto> reservationList = dao.reservationCheck(userid);
+	    List<AccommodationDto> accommodationList = new ArrayList<>();
+
+	    for (ReservationDto reservationDto : reservationList) {
+	        List<AccommodationDto> accommodationInfo = dao.accommodationInfo(reservationDto.getAccomcode());
+	        accommodationList.addAll(accommodationInfo);
+	    }
+
+	    ReservationDto selectedReservation = null;
+	    for (ReservationDto reservationDto : reservationList) {
+	        if (reservationDto.getResnum() == resnum) {
+	            selectedReservation = reservationDto;
+	            break;
+	        }
+	    }
+
+		 AccommodationDto accommodationDto = dao.accomviewDao(request.getParameter("accomcode"));
+
+		model.addAttribute("accommodation", accommodationDto);
+//		model.addAttribute("",)
+	    request.setAttribute("reservationList", reservationList);
+	    request.setAttribute("accommodationList", accommodationList);
+	    request.setAttribute("selectedReservation", selectedReservation);
+
+	    return "reserview";
+	}
+	
+
 	@RequestMapping(value = "/AccommodationForm")
 	public String accform(Model model, HttpServletRequest request, HttpSession session) {
 
@@ -221,7 +253,7 @@ public class TravelController<JSONArray> {
 	         resprice = Integer.parseInt(respriceParam);
 	     } else {
 	         // 오류 처리
-	         model.addAttribute("error", "숙박 가격을 선택해주세요.");
+	         model.addAttribute("error", "가격에 오류가있습니다");
 	         return "reservationError";
 	     }
 	     
@@ -242,6 +274,17 @@ public class TravelController<JSONArray> {
 
 	     return "reservationOk";
 	 }
+		@RequestMapping(value= "/delete")
+		public String delete(HttpServletRequest request) {
+			
+			IDao dao = sqlsession.getMapper(IDao.class);
+			
+			dao.resercancelDao(request.getParameter("resnum"));
+			
+			return "redirect:mypage";
+			
+			
+		}
 }
 	
 

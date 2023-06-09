@@ -27,12 +27,12 @@
         <td class="headertext"><a href="mypage" onclick="checkLogin()">마이페이지</a></td><br><br>
     		<td><a href="review">후기게시판</a></td>
         <tr>
-            <% if (sessionId == null) { %>
-            <td>&nbsp;</td>
-            <% } else { %>
-            <td colspan="10" align="right"><b><c:out value="${sessionId}"/>님 로그인 중입니다.</b></td>
-            <% } %>
-        </tr>
+		    <% if (sessionId == null) { %>
+		    <td>&nbsp;</td>
+		    <% } else { %>
+		    <td colspan="10" align="right"><b><span style="font-size: smaller;">로그인:<c:out value="${sessionId}"/></span></b></td>
+		    <% } %>
+		</tr>
     </table>
 </body>
 <script>
