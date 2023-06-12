@@ -26,6 +26,10 @@
             <th>예약 정보</th>
         </tr>
         <tr>
+    		<td>예약자 이름</td>
+    		<td>${user.username }</td>
+    	</tr>
+        <tr>
             <td>예약 번호</td>
             <td>${selectedReservation.resnum}</td>
         </tr>

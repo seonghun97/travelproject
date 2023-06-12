@@ -20,6 +20,10 @@
 <h3>숙소 예약 정보</h3>
 <c:forEach var="reservationDto" items="${reservationList}">
     <table border="0" cellspacing="20" width="75%" >
+    	<tr>
+    		<td>예약자 이름</td>
+    		<td>${user.username }</td>
+    	</tr>
         <tr>
             <td>숙소 코드</td>
             <td>${reservationDto.accomcode }</td>

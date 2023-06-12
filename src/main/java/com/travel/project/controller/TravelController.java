@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.travel.project.dao.IDao;
 import com.travel.project.dto.AccommodationDto;
 import com.travel.project.dto.ReservationDto;
+import com.travel.project.dto.UserDto;
 
 
 @Controller
@@ -124,11 +125,14 @@ public class TravelController<JSONArray> {
 	    IDao dao = sqlsession.getMapper(IDao.class);
 	    String userid = (String) session.getAttribute("sessionId");
 	    
+	    UserDto user = dao.getMemberInfo(userid);
+	    
 	    List<ReservationDto> reservationList = dao.reservationCheck(userid);
 	    List<AccommodationDto> accommodationList = new ArrayList<>();
 	    
 	    model.addAttribute("reservationList", reservationList);
 	    model.addAttribute("accommodationList", accommodationList);
+	    model.addAttribute("user",user);
 	    
 	    return "mypage";
 	}
@@ -142,6 +146,7 @@ public class TravelController<JSONArray> {
 
 	    IDao dao = sqlsession.getMapper(IDao.class);
 	    String userid = (String) session.getAttribute("sessionId");
+	    UserDto user = dao.getMemberInfo(userid);
 
 	    List<ReservationDto> reservationList = dao.reservationCheck(userid);
 	    List<AccommodationDto> accommodationList = new ArrayList<>();
@@ -162,9 +167,11 @@ public class TravelController<JSONArray> {
 		 AccommodationDto accommodationDto = dao.accomviewDao(request.getParameter("accomcode"));
 
 		model.addAttribute("accommodation", accommodationDto);
+		model.addAttribute("user",user);
 	    request.setAttribute("reservationList", reservationList);
 	    request.setAttribute("accommodationList", accommodationList);
 	    request.setAttribute("selectedReservation", selectedReservation);
+	    
 
 	    return "reserview";
 	}

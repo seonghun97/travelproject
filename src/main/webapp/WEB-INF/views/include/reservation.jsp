@@ -102,8 +102,8 @@
     <% String[] cities = {"--도시를선택해주세요--", "도쿄", "쿄토", "오사카", "오키나와", "삿포루", "요코하마", "나고야"}; %>
 
     <form id="locationForm" onsubmit="return validateForm()">
-        <input type="radio" name="location" value="airplane" onclick="changeFormAction(this.value)"> 비행기
-        <input type="radio" name="location" value="accommodation" onclick="changeFormAction(this.value)"> 숙소
+      <!-- <input type="radio" name="location" value="airplane" onclick="changeFormAction(this.value)"> 비행기 -->  
+        <input type="radio" name="location" value="accommodation" onclick="changeFormAction(this.value)" checked> 숙소
         <select name="city">
             <c:forEach items="<%= cities %>" var="city">
                 <option value="${city}">${city}</option>
@@ -114,7 +114,7 @@
         <label>출발일</label>
         <input type="text" name="fromDate" id="fromDate">
         ~
-        <label>도착일</label>
+        <label>도착일</label>	
         <input type="text" name="toDate" id="toDate">
         <input type="submit" value="선택">
     </form>
