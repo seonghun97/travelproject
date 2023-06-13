@@ -7,5 +7,6 @@
 <body>
     <h1>Error</h1>
     <p>${error}</p>
+    <a href="login">로그인</a></td>
 </body>
 </html>

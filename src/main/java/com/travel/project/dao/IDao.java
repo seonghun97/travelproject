@@ -2,6 +2,9 @@ package com.travel.project.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.travel.project.dto.AccommodationDto;
 import com.travel.project.dto.ReservationDto;
 import com.travel.project.dto.UserDto; 
@@ -17,6 +20,8 @@ public interface IDao {
 		public List<AccommodationDto> accomcityListDao(String cityname); //도시이름으로 숙소갖고오기
 		public AccommodationDto accomviewDao(String accomcode);  //숙소코드로 숙소갖고오기
 		public void resercancelDao(String userid);
+		public List<String> getCityList(); //오류수정중
+		
 		
 		//숙소예약
 		public void reservationDao(String checkindate, String checkoutdate,
@@ -26,6 +31,7 @@ public interface IDao {
 		public List<ReservationDto> reservationCheck(String userid);
 		public List<AccommodationDto> accommodationInfo(String accomcode);
 		public ReservationDto getReservationByResnum(String resnum);
+
 	}
 
 

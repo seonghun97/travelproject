@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	항공관련
+
 </body>
 </html>

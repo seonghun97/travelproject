@@ -17,7 +17,14 @@
             border: 1px solid black;
             padding: 8px;
         }
+
+        #map {
+            width: 400px;
+            height: 400px;
+        }
     </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key="></script>
+    <script type="text/javascript" src="/resources/js/map.js"></script>
 </head>
 <%@  include file= "include/header.jsp" %><br><br>
 <body>
@@ -26,9 +33,9 @@
             <th>예약 정보</th>
         </tr>
         <tr>
-    		<td>예약자 이름</td>
-    		<td>${user.username }</td>
-    	</tr>
+            <td>예약자 이름</td>
+            <td>${user.username}</td>
+        </tr>
         <tr>
             <td>예약 번호</td>
             <td>${selectedReservation.resnum}</td>
@@ -57,7 +64,7 @@
         </tr>
         <tr>
             <td>사진</td>
-            <td><img src="${accommodation.accompic}" alt="숙소 사진"></td>
+            <td><img src="${accommodation.accompic}" alt="숙소 사진" width="200" height="200"></td>
         </tr>
         <tr>
             <td>정보</td>
@@ -66,6 +73,13 @@
         <tr>
             <td>방번호</td>
             <td>${accommodation.roomname}</td>
+        </tr>
+        <tr>
+            <td>지도</td>
+              <td>
+                  <input type="hidden" id="accomlocation" name="accomlocation" value="${accommodation.accomlocation}">
+                  <div id="map" style="height: 400px;"></div>
+              </td>
         </tr>
     </table>
 </body>

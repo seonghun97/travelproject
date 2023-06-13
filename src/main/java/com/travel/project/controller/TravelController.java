@@ -31,16 +31,13 @@ import com.travel.project.dto.UserDto;
 
 @Controller
 public class TravelController<JSONArray> {
+	
 	@Autowired
 	private SqlSession sqlsession;
 	
 	@RequestMapping("/join")
 	private String join() {
 		return "join";
-	}
-	@RequestMapping("/index")
-	private String index() {
-		return "index";
 	}
 	@RequestMapping (value="/login")
 	 public String login() {
@@ -52,11 +49,6 @@ public class TravelController<JSONArray> {
 		
 		return "redirect:index";
 	}
-	@RequestMapping(value ="/cal")
-	public String cal() {
-		return "cal";
-	}
-	
 	
 	@RequestMapping ("/joinOk")
 		public String joinOk(HttpServletRequest request, Model model) {
@@ -195,24 +187,6 @@ public class TravelController<JSONArray> {
 	    return "accommodation/accommodationlist";
 	}
 
-	 @PostMapping("/AirplaneForm")
-	 	public String airform() {
-		 return "airplane/airplanelist";
-	 }
-	   
-	 @RequestMapping("/board")
-	 public String board() {
-		 return "board";
-	 }
-	 
-	 @RequestMapping("/review")
-	 public String review() {
-		 return "review";
-	 }
-	 @RequestMapping("/test")
-	 public String test() {
-		 return "test";
-	 }
 	 
 	 @RequestMapping("/accommodationview")
 	 public String accomview(HttpServletRequest request, Model model) {
@@ -247,11 +221,11 @@ public class TravelController<JSONArray> {
 	         model.addAttribute("error", "체크인 날짜와 체크아웃 날짜를 선택해주세요.");
 	         return "reservationError";
 	     }
-	      
+
 	     if (userid == null || accomcode == null) {
-	         // 오류 메시지 설정
-	         model.addAttribute("error", "사용자 정보나 숙박 정보가 올바르지 않습니다.");
-	         return "reservationError";
+	         // 로그인이 필요한 경우 경고 메시지 설정
+	         model.addAttribute("error", "해당 시스템은 로그인이 필요한 시스템입니다.");
+	         return "reservationError"; 
 	     }
 
 	     // 숙박 가격을 가져옴
@@ -261,10 +235,10 @@ public class TravelController<JSONArray> {
 	         resprice = Integer.parseInt(respriceParam);
 	     } else {
 	         // 오류 처리
-	         model.addAttribute("error", "가격에 오류가있습니다");
+	         model.addAttribute("error", "가격에 오류가 있습니다.");
 	         return "reservationError";
 	     }
-	     
+
 	     // 체크인 날짜와 체크아웃 날짜 사이의 일수 계산
 	     LocalDate fromDate = LocalDate.parse(checkindate);
 	     LocalDate toDate = LocalDate.parse(checkoutdate);
@@ -272,7 +246,7 @@ public class TravelController<JSONArray> {
 
 	     // 예약 가격 계산
 	     int totalprice = resprice * nights;
-	     
+
 	     IDao dao = sqlsession.getMapper(IDao.class);
 	     dao.reservationDao(checkindate, checkoutdate, totalprice, userid, accomcode); // resnum 값을 받아옴
 
@@ -292,6 +266,36 @@ public class TravelController<JSONArray> {
 			return "redirect:mypage";
 			
 			
+		}
+		@RequestMapping("/review")
+		 public String review() {
+			
+			 return "review";
+		 }
+		
+		@RequestMapping(value="/reviewOk")
+		public String reviewOk(HttpServletRequest request, HttpSession session) {
+			 if (session == null || session.getAttribute("sessionId") == null) {
+
+			        return "redirect:/login";
+			    }
+			 return "reviewwrite";
+		}
+		@RequestMapping(value="/reviewWriteOk")
+		public String reviewWriteOk() {
+			return "";
+		}
+		
+		@RequestMapping(value = "/index")
+		private String index(HttpServletRequest request, Model model) {
+
+			
+			IDao dao = sqlsession.getMapper(IDao.class);
+			
+			List<String> cityList = dao.getCityList();
+	        model.addAttribute("cityList", cityList);
+			
+			return "index";
 		}
 }
 	

@@ -4,14 +4,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>숙소</title>
+    <meta charset="UTF-8">
+    <title>숙소</title>
+    <%@  include file= "/WEB-INF/views/include/header.jsp" %>
+    <style>
+    #map {
+        width: 1000px;
+        height: 600px;
+    }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key="></script>
+    <script type="text/javascript" src="/resources/js/map.js"></script>
 </head>
-<body>
+<body onload="initializeMap()">
     <form id="reservationForm" method="post" action="reservationOk">
         <p>선택한 예약 날짜: ${fromDate}부터 ${toDate}</p>
         <table>
-        	 <tr>
+            <tr>
                 <td>숙소 코드:</td>
                 <td><input type="text" name="accomcode" value="${accommodation.accomcode}" readonly="readonly"></td>
             </tr>
@@ -21,19 +30,19 @@
             </tr>
             <tr>
                 <td>숙소 사진:</td>
-                <td><img src="${accommodation.accompic}" alt="숙소 사진"></td>
+                <td><img src="${accommodation.accompic}" alt="숙소 사진" width="200" height="200"></td>
             </tr>
             <tr>
                 <td>숙소 설명:</td>
-                <td><textarea class="textareabox" rows="8" cols="30" name="accomdes" readonly="readonly">${accommodation.accomdes}</textarea></td>
+                <td><textarea class="textareabox" rows="8" cols="130" name="accomdes" readonly="readonly">${accommodation.accomdes}</textarea></td>
             </tr>
             <tr>
-			    <td>숙소 위치:</td>
-			    <td>
-			        <input type="text" id="accomlocation" name="accomlocation" value="${accommodation.accomlocation}" readonly="readonly">
-			        <div id="map"></div>
-			    </td>
-			</tr>
+                <td>숙소 위치:</td>
+                <td>
+                    <input type="hidden" id="accomlocation" name="accomlocation" value="${accommodation.accomlocation}">
+                    <div id="map" style="height: 400px;"></div>
+                </td>
+            </tr>
             <tr>
                 <td>숙박 가격:</td>
                 <td><input type="text" name="resprice" value="${accommodation.accomprice}" readonly="readonly"></td>
@@ -42,21 +51,10 @@
                 <td>
                     <input type="hidden" name="fromDate" value="${fromDate}">
                     <input type="hidden" name="toDate" value="${toDate}">
-                    <input type="button" value="예약하기" onclick="checkLoginAndSubmit()">
+                    <input type="submit" value="예약하기">
                 </td>
             </tr>
         </table>
     </form>
 </body>
-<script>
-function checkLoginAndSubmit() {
-    <% String sessionId = (String) session.getAttribute("sessionId");
-    if (sessionId == null) { %>
-        alert("로그인이 필요한 페이지입니다. 로그인 후 이용해주세요.");
-        window.location.href = "login";
-    <% } else { %>
-        document.getElementById("reservationForm").submit();
-    <% } %>
-}
-</script>
 </html>
