@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <title>숙소</title>
     <%@  include file= "/WEB-INF/views/include/header.jsp" %>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAx911_LS5VyvITAvu7qSnPtQmBJv9FZX4"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key="></script>
     <script type="text/javascript" src="/resources/js/map.js"></script>
 </head>
 <body onload="initializeMap()">

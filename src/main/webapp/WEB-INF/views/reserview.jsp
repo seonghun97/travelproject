@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <title>Reservation Details</title>
     <link rel="stylesheet" href="/resources/css/reserview.css"/>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAx911_LS5VyvITAvu7qSnPtQmBJv9FZX4"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key="></script>
     <script type="text/javascript" src="/resources/js/map.js"></script>
 </head>
 <%@  include file= "include/header.jsp" %><br><br>

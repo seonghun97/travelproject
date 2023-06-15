@@ -28,9 +28,12 @@
 			<td>이메일</td>
 			<td>${user.useremail }</td>
 		</tr>
+		
 	</table>
-		<input type="button" value="회원수정">
-		<input type="button" value="회원탈퇴">
+	<div class="buttons-container">
+        <input type="button" value="회원수정">
+        <input type="button" value="회원탈퇴">
+    </div>
 <h3>숙소 예약 정보</h3>
 <c:forEach var="reservationDto" items="${reservationList}">
    <a href="reserview?resnum=${reservationDto.resnum}&accomcode=${reservationDto.accomcode}">
@@ -61,7 +64,9 @@
         </tr>
     </table>
     </a>
-    <input type="button" value="예약 취소하기" onclick="confirmCancellation(${reservationDto.resnum}, '${reservationDto.accomcode}')">&nbsp;&nbsp;
+    <div class="buttons-container">
+    	<input type="button" value="예약 취소하기" onclick="confirmCancellation(${reservationDto.resnum}, '${reservationDto.accomcode}')">&nbsp;&nbsp;
+    </div>
 </c:forEach>
 </body>
 </html>
