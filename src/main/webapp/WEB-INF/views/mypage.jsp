@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
+    <link rel="stylesheet" href="/resources/css/mypage.css"/>
     <script>
         function confirmCancellation(reservationId, accomcode) {
             if (confirm("정말로 예약을 취소하시겠습니까?")) {

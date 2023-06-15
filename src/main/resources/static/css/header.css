@@ -1,0 +1,75 @@
+	@charset "UTF-8";
+	body {
+	    font-family: Arial, sans-serif;
+	    margin: 0;
+	    padding: 0;
+	}
+		.headerline {
+	    background-color: rgba(221, 238, 213, 0.8); 
+	    color: #fff;
+	    position: fixed;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    z-index: 999;
+	    display: flex;
+	    justify-content: space-between;
+	    align-items: center;
+	}
+	.headerline td {
+	    padding: 15px;
+	}
+	.headertext a {
+	    color: #050505;
+	    text-decoration: none;
+	}
+	.margin01  {
+	    width: 10px;
+	}
+	.margin02 {
+		width:100px;
+	}
+	.headertext a:hover {
+	    text-decoration: underline;
+	}
+	.navbar {
+	    background-color: #f8f9fa;
+	    padding: 10px;
+	    text-align: right;
+	}
+	.navbar-brand {
+	    color: #000;
+	    font-weight: bold;
+	    text-decoration: none;
+	}
+	.navbar-nav .nav-link {
+	    color: #000;
+	    text-decoration: none;
+	    margin-left: 10px;
+	}
+	.specialhead a {
+	    color: #050505;
+	    text-decoration: none;
+	    font-size: 24px; /* Adjust the font size as desired */
+	    font-weight: bold;
+	}
+	.specialhead a:hover {
+	   	text-decoration: underline;
+	}
+	
+	.navbar-nav .nav-link.active,
+	.navbar-nav .nav-link:focus,
+	.navbar-nav .nav-link:hover {
+	    color: #fff;
+	    text-decoration: underline;
+	}
+	.margin02 {
+	    width: 20px;
+	}
+	/* 추가된 스타일 */
+	.content {
+	    padding-top: 60px;
+	}
+	.navbar-nav .nav-link[href="review"] {
+	    color: #fff;
+	}

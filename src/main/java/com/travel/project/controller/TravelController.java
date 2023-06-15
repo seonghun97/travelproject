@@ -43,6 +43,10 @@ public class TravelController<JSONArray> {
 	 public String login() {
 	    return "login";
 	 }
+	@RequestMapping (value="/test")
+	 public String test() {
+	    return "test";
+	 }
 	@RequestMapping(value ="/logout")
 	public String logout(HttpSession session) {
 		session.invalidate(); //세션 삭제 => logout
@@ -186,10 +190,8 @@ public class TravelController<JSONArray> {
 
 	    return "accommodation/accommodationlist";
 	}
-
-	 
 	 @RequestMapping("/accommodationview")
-	 public String accomview(HttpServletRequest request, Model model) {
+	 public String accomoview(HttpServletRequest request, Model model) {
 		 
 		 IDao dao = sqlsession.getMapper(IDao.class);
 
@@ -205,6 +207,25 @@ public class TravelController<JSONArray> {
 
 		 return "accommodation/accommodationview";
 	 }
+
+	 
+	@RequestMapping("/accomlistview")
+	public String accomview(HttpServletRequest request, Model model) {
+
+	    IDao dao = sqlsession.getMapper(IDao.class);
+
+	    List<AccommodationDto> accommodationDto = dao.accomlistview(request.getParameter("pcode"));
+
+	    model.addAttribute("accommodationDtos", accommodationDto); 
+
+	    // 예약 날짜 가져오기
+	    String fromDate = request.getParameter("fromDate");
+	    String toDate = request.getParameter("toDate");
+	    model.addAttribute("fromDate", fromDate);
+	    model.addAttribute("toDate", toDate);
+
+	    return "accommodation/accomlistview";
+	}
 	
 	 @RequestMapping("/reservationOk")
 	 public String reservation(HttpServletRequest request, HttpSession session, Model model) {
@@ -215,12 +236,8 @@ public class TravelController<JSONArray> {
 	     String checkindate = request.getParameter("fromDate");
 	     String checkoutdate = request.getParameter("toDate");
 	     String accomcode = request.getParameter("accomcode");
+	     
 
-	     if (checkindate == null || checkindate.isEmpty() || checkoutdate == null || checkoutdate.isEmpty()) {
-	         // 오류 메시지 설정
-	         model.addAttribute("error", "체크인 날짜와 체크아웃 날짜를 선택해주세요.");
-	         return "reservationError";
-	     }
 
 	     if (userid == null || accomcode == null) {
 	         // 로그인이 필요한 경우 경고 메시지 설정
@@ -248,6 +265,8 @@ public class TravelController<JSONArray> {
 	     int totalprice = resprice * nights;
 
 	     IDao dao = sqlsession.getMapper(IDao.class);
+	     
+	     
 	     dao.reservationDao(checkindate, checkoutdate, totalprice, userid, accomcode); // resnum 값을 받아옴
 
 	     model.addAttribute("fromDate", checkindate);
@@ -276,7 +295,6 @@ public class TravelController<JSONArray> {
 		@RequestMapping(value="/reviewOk")
 		public String reviewOk(HttpServletRequest request, HttpSession session) {
 			 if (session == null || session.getAttribute("sessionId") == null) {
-
 			        return "redirect:/login";
 			    }
 			 return "reviewwrite";
@@ -288,6 +306,17 @@ public class TravelController<JSONArray> {
 		
 		@RequestMapping(value = "/index")
 		private String index(HttpServletRequest request, Model model) {
+
+			
+			IDao dao = sqlsession.getMapper(IDao.class);
+			
+			List<String> cityList = dao.getCityList();
+	        model.addAttribute("cityList", cityList);
+			
+			return "index";
+		}
+		@RequestMapping(value = "/")
+		private String home(HttpServletRequest request, Model model) {
 
 			
 			IDao dao = sqlsession.getMapper(IDao.class);

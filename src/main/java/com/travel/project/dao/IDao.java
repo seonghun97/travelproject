@@ -18,7 +18,8 @@ public interface IDao {
 		
 		//숙소관련
 		public List<AccommodationDto> accomcityListDao(String cityname); //도시이름으로 숙소갖고오기
-		public AccommodationDto accomviewDao(String accomcode);  //숙소코드로 숙소갖고오기
+		public AccommodationDto accomviewDao(String accomname);  //숙소코드로 숙소갖고오기
+		public List<AccommodationDto> accomlistview(String pcode); // 숙소이름으로 숙소전부갖고오기
 		public void resercancelDao(String userid);
 		public List<String> getCityList(); //오류수정중
 		
@@ -31,7 +32,7 @@ public interface IDao {
 		public List<ReservationDto> reservationCheck(String userid);
 		public List<AccommodationDto> accommodationInfo(String accomcode);
 		public ReservationDto getReservationByResnum(String resnum);
-
+		
 	}
 
 

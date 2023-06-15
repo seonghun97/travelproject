@@ -6,12 +6,11 @@ $(function() {
     $.datepicker.setDefaults($.datepicker.regional['ko']);
 
     $('#fromDate').datepicker({
-        showOn: "both",                     // 달력을 표시할 타이밍 (both: focus or button)
-        buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",        // 버튼 이미지
-        buttonImageOnly: true,              // 버튼 이미지만 표시할지 여부
+        showOn: "focus",                     // 달력을 표시할 타이밍 (focus: input field에 포커스 시에만)
+        buttonImageOnly: false,              // 버튼 이미지만 표시하지 않음
         buttonText: "날짜선택",              // 버튼의 대체 텍스트
         dateFormat: "yy-mm-dd",             // 날짜의 형식
-        changeMonth: true,                  // 월을 이동하기 위한 선택상자 표시여부
+        changeMonth: false,                  // 월을 이동하기 위한 선택상자 표시여부
         minDate: 0,                         // 오늘 이전 날짜 선택 불가
         onClose: function(selectedDate) {
             // 시작일(fromDate) datepicker가 닫힐때
@@ -21,9 +20,8 @@ $(function() {
     });
 
     $('#toDate').datepicker({
-        showOn: "both",
-        buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-        buttonImageOnly: true,
+        showOn: "focus",
+        buttonImageOnly: false,
         buttonText: "날짜선택",
         dateFormat: "yy-mm-dd",
         changeMonth: true,

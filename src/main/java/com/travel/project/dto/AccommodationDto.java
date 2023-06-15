@@ -17,6 +17,6 @@ public class AccommodationDto {
 	private String cityname; //도시이름
 	private String roomname;// 방번호
 	private int accomprice;//가격
-	private String pcode; //상위코드
-	private String lcode; //하위코드
+	private String pcode; //부모코드
+	
 }

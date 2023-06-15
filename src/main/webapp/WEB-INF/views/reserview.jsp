@@ -7,77 +7,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Reservation Details</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-        }
-
-        #map {
-            width: 400px;
-            height: 400px;
-        }
-    </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key="></script>
+    <link rel="stylesheet" href="/resources/css/reserview.css"/>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAx911_LS5VyvITAvu7qSnPtQmBJv9FZX4"></script>
     <script type="text/javascript" src="/resources/js/map.js"></script>
 </head>
 <%@  include file= "include/header.jsp" %><br><br>
 <body>
     <table>
         <tr>
-            <th>예약 정보</th>
+            <th colspan="2">예약 정보</th>
         </tr>
         <tr>
-            <td>예약자 이름</td>
-            <td>${user.username}</td>
+            <th>예약자 이름</th>
+            <td>${user.username }</td>
         </tr>
         <tr>
-            <td>예약 번호</td>
-            <td>${selectedReservation.resnum}</td>
+            <th>예약 번호</th>
+            <td>${selectedReservation.resnum }</td>
         </tr>
         <tr>
-            <td>체크인</td>
-            <td>${fn:substring(selectedReservation.checkindate, 0, 10)}</td>
+            <th>체크인</th>
+            <td>${fn:substring(selectedReservation.checkindate, 0, 10) }</td>
         </tr>
         <tr>
-            <td>체크아웃</td>
-            <td>${fn:substring(selectedReservation.checkoutdate, 0, 10)}</td>
+            <th>체크아웃</th>
+            <td>${fn:substring(selectedReservation.checkoutdate, 0, 10) }</td>
         </tr>
         <tr>
-            <td>가격</td>
-            <td>${selectedReservation.resprice}</td>
+            <th>가격</th>
+            <td>${selectedReservation.resprice }</td>
         </tr>
     </table>
 
     <table>
         <tr>
-            <th>숙소 정보</th>
+            <th colspan = "2">숙소 정보</th>
         </tr>
         <tr>
-            <td>위치</td>
-            <td>${accommodation.accomlocation}</td>
+            <th>위치</th>
+            <td>${accommodation.accomlocation }</td>
         </tr>
         <tr>
-            <td>사진</td>
-            <td><img src="${accommodation.accompic}" alt="숙소 사진" width="200" height="200"></td>
+            <th>사진</th>
+            <td><img src="${accommodation.accompic }" alt="숙소 사진" width="200" height="200"></td>
         </tr>
         <tr>
-            <td>정보</td>
-            <td>${accommodation.accomdes}</td>
+            <th>정보</th>
+            <td>${accommodation.accomdes }</td>
         </tr>
         <tr>
-            <td>방번호</td>
-            <td>${accommodation.roomname}</td>
+            <th>방번호</th>
+            <td>${accommodation.roomname }</td>
         </tr>
         <tr>
-            <td>지도</td>
+            <th>지도</th>
               <td>
-                  <input type="hidden" id="accomlocation" name="accomlocation" value="${accommodation.accomlocation}">
+                  <input type="hidden" id="accomlocation" name="accomlocation" value="${accommodation.accomlocation }">
                   <div id="map" style="height: 400px;"></div>
               </td>
         </tr>

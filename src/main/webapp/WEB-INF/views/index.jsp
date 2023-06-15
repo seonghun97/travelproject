@@ -9,15 +9,15 @@
 <body>
   <%@  include file= "include/header.jsp" %><br><br>
   <%@  include file= "include/reservation.jsp" %>
+   <%@  include file= "include/footer.jsp" %>
   
   
-  
  
  
  
  
  
   
-  <!--  <%@ include file="include/footer.jsp" %> -->
+   
 </body>
 </html>

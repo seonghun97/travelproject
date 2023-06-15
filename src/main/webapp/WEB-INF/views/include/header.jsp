@@ -4,14 +4,15 @@
 <html>
 <head>
     <meta charset="UTF-8">
-<script type="text/javascript" src="/resources/js/join.js"></script>    
-    <title>헤더 입니다.</title>
+    <script type="text/javascript" src="/resources/js/join.js"></script>
+    <link rel="stylesheet" type="text/css" href="/resources/css/header.css">
+    <title>헤더입니다.</title>
 </head>
 <body>
-<table border="0" cellspacing="0" cellpadding="" width="100%">
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
     <tr class="headerline">
         <td class="margin01">&nbsp;</td>
-        <td class="headertext"><a href="index">HOME</a></td>
+        <td class="specialhead"><a href="index">ICI TRAVEL PROJECT</a></td>
         <td class="margin02">&nbsp;</td>
         <% String sessionId = (String) session.getAttribute("sessionId");
         if (sessionId == null) { %>
@@ -19,21 +20,20 @@
         <% } else { %>
         <td class="headertext"><a href="logout">로그아웃</a></td>
         <% } %>
-        <td class="margin02">&nbsp;</td>
         <% if (sessionId == null) { %>
         <td class="headertext"><a href="join">회원가입</a></td>
         <% } else { %>
         <% } %>
         <td class="headertext"><a href="mypage" onclick="checkLogin()">마이페이지</a></td><br><br>
-    		<td><a href="review">후기게시판</a></td>
+        <td class="headertext"><a href="review">후기게시판</a></td>
         <tr>
-		    <% if (sessionId == null) { %>
-		    <td>&nbsp;</td>
-		    <% } else { %>
-		    <td colspan="10" align="right"><b><span style="font-size: smaller;">로그인:<c:out value="${sessionId}"/></span></b></td>
-		    <% } %>
-		</tr>
-    </table>
+            <% if (sessionId == null) { %>
+            <td>&nbsp;</td>
+            <% } else { %>
+            <td colspan="10" align="right"><b><span>로그인:<c:out value="${sessionId}"/></span></b></td>
+            <% } %>
+        </tr>
+    </table>	
 </body>
 <script>
     function checkLogin() {
