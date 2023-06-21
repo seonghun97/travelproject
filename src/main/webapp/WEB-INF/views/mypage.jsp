@@ -11,28 +11,32 @@
     <script>
         function confirmCancellation(reservationId, accomcode) {
             if (confirm("정말로 예약을 취소하시겠습니까?")) {
-                window.location.href = "delete?resnum=" + reservationId + "&accomcode=" + accomcode;
+                window.location.href = "deleteRes?resnum=" + reservationId + "&accomcode=" + accomcode;
+            }
+        }
+        function deleteUser(userid) {
+            if (confirm("정말로 회원 탈퇴하시겠습니까?")) {
+                window.location.href = "userdel?userid=" + userid;
             }
         }
     </script>
 </head>
 <body>
-<%@  include file= "include/header.jsp" %><br><br>
+<%@ include file="include/header.jsp" %><br><br>
 <h3>내 정보</h3>
 	<table border="0" cellspacing="5" width="20%">
 		<tr>
 			<td>이름</td>
-			<td>${user.username	}</td>
+			<td>${user.username}</td>
 		</tr>
 		<tr>
 			<td>이메일</td>
-			<td>${user.useremail }</td>
+			<td>${user.useremail}</td>
 		</tr>
-		
 	</table>
 	<div class="buttons-container">
-        <input type="button" value="회원수정">
-        <input type="button" value="회원탈퇴">
+        <input type="button" value="회원수정" onclick="script:window.location.href='/edit'">
+        <input type="button" value="회원탈퇴" onclick="deleteUser('${user.userid}')">&nbsp;&nbsp;
     </div>
 <h3>숙소 예약 정보</h3>
 <c:forEach var="reservationDto" items="${reservationList}">

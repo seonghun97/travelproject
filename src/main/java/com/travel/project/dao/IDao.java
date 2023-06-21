@@ -1,5 +1,6 @@
 package com.travel.project.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.travel.project.dto.AccommodationDto;
 import com.travel.project.dto.ReservationDto;
+import com.travel.project.dto.ReviewDto;
 import com.travel.project.dto.UserDto; 
 public interface IDao {
 		public int joinDao(String userid, String userpw,String username
@@ -14,6 +16,8 @@ public interface IDao {
 		public int checkIdDao(String userid);//가입하려는 id의 존재여부 체크
 		public int checkIdPwDao(String userid, String userpw); //아이디와 비밀번호의 일치여부 체크
 		public UserDto getMemberInfo(String userid); //아이디로 조회하여 회원정보 갖고오기
+		public void userdelDao(String userid);
+		
 		
 		
 		//숙소관련
@@ -32,6 +36,18 @@ public interface IDao {
 		public List<ReservationDto> reservationCheck(String userid);
 		public List<AccommodationDto> accommodationInfo(String accomcode);
 		public ReservationDto getReservationByResnum(String resnum);
+		
+		//리뷰게시판 글 디비
+				public void reviewDao(String reviewsubject, String reviewcontent, String userid); //질문하기 insert
+				public ArrayList<ReviewDto> reviewList(int amount, int pageNum);
+				public int totalreviewDao();
+				public ReviewDto contentreviewDao(String reviewnum);
+				public void uphitDao(String reviewnum);
+				public void deleteDao(String reviewnum);
+				public void updateMember(String userid, String userpw, String username, 
+						String userbirth, String useremail, String usermobile);
+				public int getReservationCount(String userid);
+				public void deleteReviewsByUser(String userid);
 		
 	}
 

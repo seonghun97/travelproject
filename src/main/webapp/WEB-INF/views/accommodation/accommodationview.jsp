@@ -50,6 +50,7 @@
                         <input type="hidden" name="toDate" value="${toDate}">
                     </td>
                     <td>
+                    	<input type="button" onclick="history.go(-1);" class="btn-go-back" value="전페이지로 이동">
                     	<input type="submit" value="예약하기">
                     </td>
                 </tr>

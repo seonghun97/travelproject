@@ -71,3 +71,26 @@
     input[type="submit"]:hover {
         background-color: #02994E;
     }
+    .cancel-button {
+    background-color: #03C75A;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+	}
+	
+	.cancel-button:hover {
+	    background-color: #02994E;
+	}
+	 .form-container .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .form-container .buttons input {
+            margin: 0 5px;
+        }

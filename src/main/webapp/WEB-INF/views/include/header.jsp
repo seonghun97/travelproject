@@ -12,7 +12,7 @@
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
     <tr class="headerline">
         <td class="margin01">&nbsp;</td>
-        <td class="specialhead"><a href="index">ICI TRAVEL PROJECT</a></td>
+        <td class="specialhead"><a href="index">TRAVEL PROJECT</a></td>
         <td class="margin02">&nbsp;</td>
         <% String sessionId = (String) session.getAttribute("sessionId");
         if (sessionId == null) { %>
@@ -25,7 +25,7 @@
         <% } else { %>
         <% } %>
         <td class="headertext"><a href="mypage" onclick="checkLogin()">마이페이지</a></td><br><br>
-        <td class="headertext"><a href="review">후기게시판</a></td>
+        <td class="headertext"><a href="review">게시판</a></td>
     </table>	
 </body>
 <script>

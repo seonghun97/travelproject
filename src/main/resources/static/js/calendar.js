@@ -25,6 +25,7 @@ $(function() {
         buttonText: "날짜선택",
         dateFormat: "yy-mm-dd",
         changeMonth: true,
+        minDate: 0,    
         onClose: function(selectedDate) {
             // 종료일(toDate) datepicker가 닫힐때
             // 시작일(fromDate)의 선택할 수 있는 최대 날짜(maxDate)를 선택한 종료일로 지정

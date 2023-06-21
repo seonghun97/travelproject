@@ -4,76 +4,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/resources/css/accomlist.css"/>
     <meta charset="UTF-8">
     <title>숙소 목록</title>
+    <link rel="stylesheet" href="/resources/css/accomlistview.css"/>
     <%@ include file="/WEB-INF/views/include/header.jsp" %>
 </head>
 <body>
     <div class="container">
         <h1>숙소 목록</h1>
         <p>선택한 예약 날짜: ${fromDate}부터 ${toDate}</p>
-        <table border="0" cellspacing="20" width="75%">
+        <table>
             <thead>
                 <tr>
                     <th>숙소 이름</th>
                     <th>숙소 사진</th>
-                    <th>숙소 설명</th>
                     <th>위치</th>
-                    <th width="10%">도시 이름</th>
-                    <th width="10%">객실 호수</th>
-                    <th width="10%">객실 가격</th>
+                    <th>도시 이름</th>
+                    <th>객실 호수</th>
+                    <th>객실 가격</th>
                 </tr>
             </thead>
             <tbody>
                 <c:forEach items="${accommodationDtos}" var="accommodation">
-    <tr>
-        <td>
-            <a href="accommodationview?accomcode=${accommodation.accomcode}&fromDate=${fromDate}&toDate=${toDate}">
-                ${accommodation.accomname}
-            </a>
-        </td>
-        <td>
-            <a href="accommodationview?accomcode=${accommodation.accomcode}&fromDate=${fromDate}&toDate=${toDate}">
-                <img src="${accommodation.accompic}" alt="숙소 사진" width="200" height="200">
-            </a>
-        </td>
-        <td>
-            <a href="accommodationview?accomcode=${accommodation.accomcode}&fromDate=${fromDate}&toDate=${toDate}">
-                 <c:choose>
-                    <c:when test="${fn:length(accommodation.accomdes) > 30}">
-                        <c:out value="${fn:substring(accommodation.accomdes, 0, 29)}"></c:out>...
-                    </c:when>
-                    <c:otherwise>
-                        <c:out value="${accommodation.accomdes}"></c:out>
-                    </c:otherwise>
-                </c:choose>
-            </a>
-        </td>
-        <td>
-            <a href="accommodationview?accomcode=${accommodation.accomcode}&fromDate=${fromDate}&toDate=${toDate}">
-                ${accommodation.accomlocation}
-            </a>
-        </td>
-        <td>
-            <a href="accommodationview?accomcode=${accommodation.accomcode}&fromDate=${fromDate}&toDate=${toDate}">
-                ${accommodation.cityname}
-            </a>
-        </td>
-        <td>
-            <a href="accommodationview?accomcode=${accommodation.accomcode}&fromDate=${fromDate}&toDate=${toDate}">
-                ${accommodation.roomname}
-            </a>
-        </td>
-        <td>
-            <a href="accommodationview?accomcode=${accommodation.accomcode}&fromDate=${fromDate}&toDate=${toDate}">
-                ${accommodation.accomprice}
-            </a>
-        </td>
-    </tr>
-</c:forEach>
+                    <tr>
+                        <td class="accommodation-name">
+                            <a href="accommodationview?accomcode=${accommodation.accomcode}&fromDate=${fromDate}&toDate=${toDate}">
+                                ${accommodation.accomname}
+                            </a>
+                        </td>
+                        <td class="accommodation-image">
+                            <a href="accommodationview?accomcode=${accommodation.accomcode}&fromDate=${fromDate}&toDate=${toDate}">
+                                <img src="${accommodation.accompic}" alt="숙소 사진">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="accommodationview?accomcode=${accommodation.accomcode}&fromDate=${fromDate}&toDate=${toDate}">
+                                ${accommodation.accomlocation}
+                            </a>
+                        </td>
+                        <td>
+                            <a href="accommodationview?accomcode=${accommodation.accomcode}&fromDate=${fromDate}&toDate=${toDate}">
+                                ${accommodation.cityname}
+                            </a>
+                        </td>
+                        <td>
+                            <a href="accommodationview?accomcode=${accommodation.accomcode}&fromDate=${fromDate}&toDate=${toDate}">
+                                ${accommodation.roomname}
+                            </a>
+                        </td>
+                        <td>
+                            <a href="accommodationview?accomcode=${accommodation.accomcode}&fromDate=${fromDate}&toDate=${toDate}">
+                                ${accommodation.accomprice}
+                            </a>
+                        </td>
+                    </tr>
+                </c:forEach>
             </tbody>
         </table>
+    </div>
+    <div style="text-align: center;">
+        <a href="javascript:history.go(-1);" class="btn-go-back">전페이지로 이동</a>
     </div>
 </body>
 </html>

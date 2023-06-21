@@ -14,7 +14,7 @@
     
     <footer class="footer">
         <div class="company-info">
-            <p>회사 정보: ici컴퍼니</p>
+            <p>회사 정보: TJ컴퍼니</p>
         </div>
         <div class="social-media">
             <a href="https://www.facebook.com/" target="_blank">

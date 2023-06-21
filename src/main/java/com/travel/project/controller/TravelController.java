@@ -25,7 +25,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.travel.project.dao.IDao;
 import com.travel.project.dto.AccommodationDto;
+import com.travel.project.dto.BoardAnswerDto;
+import com.travel.project.dto.Criteria;
+import com.travel.project.dto.PageDto;
 import com.travel.project.dto.ReservationDto;
+import com.travel.project.dto.ReviewDto;
 import com.travel.project.dto.UserDto;
 
 
@@ -275,8 +279,8 @@ public class TravelController<JSONArray> {
 
 	     return "reservationOk";
 	 }
-		@RequestMapping(value= "/delete")
-		public String delete(HttpServletRequest request) {
+		@RequestMapping(value= "/deleteRes")
+		public String deleteres(HttpServletRequest request) {
 			
 			IDao dao = sqlsession.getMapper(IDao.class);
 			
@@ -286,23 +290,34 @@ public class TravelController<JSONArray> {
 			
 			
 		}
-		@RequestMapping("/review")
-		 public String review() {
-			
-			 return "review";
-		 }
+		@RequestMapping(value = "/userdel")
+		public String userdel(HttpServletRequest request, HttpSession session) {
+		    IDao dao = sqlsession.getMapper(IDao.class);
+		    
+		    String userid = request.getParameter("userid");
+		    
+		    // 예약 정보 확인
+		    int reservationCount = dao.getReservationCount(userid);
+		    
+		    if (reservationCount > 0) {
+		        // 예약 정보가 있을 경우 탈퇴 불가능 메시지 표시
+		        return "deleteError";
+		    } else {
+		        // 리뷰 정보 삭제
+		        dao.deleteReviewsByUser(userid);
+		        
+		        // 예약 정보가 없을 경우 회원 탈퇴 수행
+		        dao.userdelDao(userid);
+		        
+		        // 세션 초기화
+		        session.removeAttribute("userid");
+		        session.invalidate();
+		        
+		        return "deletepage";
+		    }
+		}
+
 		
-		@RequestMapping(value="/reviewOk")
-		public String reviewOk(HttpServletRequest request, HttpSession session) {
-			 if (session == null || session.getAttribute("sessionId") == null) {
-			        return "redirect:/login";
-			    }
-			 return "reviewwrite";
-		}
-		@RequestMapping(value="/reviewWriteOk")
-		public String reviewWriteOk() {
-			return "";
-		}
 		
 		@RequestMapping(value = "/index")
 		private String index(HttpServletRequest request, Model model) {
@@ -326,6 +341,116 @@ public class TravelController<JSONArray> {
 			
 			return "index";
 		}
+		@RequestMapping("/reviewWrite")
+		 public String reviewWrite(HttpSession session) {
+			 if (session == null || session.getAttribute("sessionId") == null) {
+			        // 로그인 세션이 없으면 경고창을 띄우고 로그인 페이지로 이동
+				 return "redirect:/login";
+			 }else {
+			 return "reviewWrite";}
+		 }
+	     @RequestMapping("/write")
+	     public String writeForm(HttpServletRequest request, HttpSession session) {    
+	       
+	    	 String reviewsubject = request.getParameter("subject");
+	    	 String reviewcontent = request.getParameter("content");
+	    	 String userid = (String) session.getAttribute("sessionId");
+	    	 IDao dao = sqlsession.getMapper(IDao.class);
+
+	    	 dao.reviewDao(reviewsubject, reviewcontent, userid);
+	    	 return "redirect:/review";
+	 	    }
+		 @RequestMapping(value = "/contentView")
+			public String contentView(HttpServletRequest request, Model model) {
+				
+				IDao dao = sqlsession.getMapper(IDao.class);
+				
+				ReviewDto boardanswerDto = dao.contentreviewDao(request.getParameter("bnum"));
+				
+				model.addAttribute("boardanswerDto", boardanswerDto);
+				
+				return "contentView";
+		 }
+		 @RequestMapping(value="/review")
+		 	public String review(Model model, HttpServletRequest request, Criteria criteria) {
+			 IDao dao = sqlsession.getMapper(IDao.class);
+			 int pageNum = 0;
+			 
+			 if(request.getParameter("pageNum") == null) {		
+					pageNum = 1;
+					criteria.setPageNum(pageNum);
+				} else {
+					pageNum = Integer.parseInt(request.getParameter("pageNum"));
+					criteria.setPageNum(pageNum);
+				}
+			 int total = dao.totalreviewDao();
+			 
+			 PageDto pageDto = new PageDto(criteria, total);	
+			 
+			 
+			 ArrayList<ReviewDto> dtos = dao.reviewList(criteria.getAmount(),pageNum); 
+
+			 model.addAttribute("pageMaker", pageDto);
+			 model.addAttribute("list",dtos);
+			 model.addAttribute("total", total);
+			 return "review";
+		 }
+		 @RequestMapping(value="/reviewWatch")
+		 	public String reviewWatch(Model model, HttpServletRequest request, HttpSession session) {
+			 IDao dao = sqlsession.getMapper(IDao.class);
+			 String reviewnum = request.getParameter("reviewnum");
+			 ReviewDto redto = dao.contentreviewDao(reviewnum);
+			 dao.uphitDao(reviewnum);
+			 
+			 String sessionId = (String)session.getAttribute("sessionId");
+			 
+			 if(sessionId == null) {//로그인하지 않은 경우
+					model.addAttribute("delCheck", "0");
+				} else if(sessionId.equals(redto.getUserid())) { //로그인한 아이디와 글쓴아이디가 일치
+					model.addAttribute("delCheck", "1");
+				} else { //로그인한 아이디와 글쓴아이디가 일치하지 않은 경우
+					model.addAttribute("delCheck", "0");
+				}
+			 
+			 model.addAttribute("redto", redto);
+			 
+			 return "reviewWatch";
+		 }
+		 @RequestMapping(value = "/delete")
+			public String delete(HttpServletRequest request) {
+				
+				
+				IDao dao = sqlsession.getMapper(IDao.class);
+				
+				dao.deleteDao(request.getParameter("reviewnum"));
+				
+				return "redirect:review";
+			}
+		 @RequestMapping(value= "/edit")
+		 	public String edit(HttpSession session, Model model) {
+			 
+			 IDao dao = sqlsession.getMapper(IDao.class);
+			 String userid = (String) session.getAttribute("sessionId");
+			    
+			 UserDto user = dao.getMemberInfo(userid);
+			 model.addAttribute("user",user);
+			 return "edit";
+		 }
+		 @RequestMapping(value="/editMember")
+		 public String editMember(HttpServletRequest request, Model model) {
+		     String userid = request.getParameter("userid");
+		     String userpw = request.getParameter("userpw");
+		     String username = request.getParameter("username");
+		     String userbirth = request.getParameter("userbirth");
+		     String useremail = request.getParameter("useremail");
+		     String usermobile = request.getParameter("usermobile");
+		     
+		     IDao dao = sqlsession.getMapper(IDao.class);
+		     
+		     dao.updateMember(userid, userpw, username, userbirth, useremail, usermobile);
+		         
+		     return "redirect:mypage";
+		 }
 }
 	
 

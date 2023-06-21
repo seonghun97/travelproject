@@ -45,3 +45,16 @@
             border: 1px solid #ddd;
             border-radius: 5px;
         } 
+         .btn-mypage {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn-mypage:hover {
+            background-color: #45a049;
+        }
+        

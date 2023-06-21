@@ -67,5 +67,8 @@
               </td>
         </tr>
     </table>
+     <div style="text-align: center;">
+        <a href="mypage" class="btn-mypage">마이페이지 이동</a>
+    </div>
 </body>
 </html>

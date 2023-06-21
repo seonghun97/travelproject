@@ -1,64 +1,66 @@
 @charset "UTF-8";
-body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            font-size: 24px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th,
-        td {
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-        }
-
-        th {
-            background-color: #f2f2f2;
-            font-weight: bold;
-            text-align: left;
-        }
-
-        a {
-            color: #000;
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: #4CAF50;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        @media (max-width: 768px) {
-            table {
-                font-size: 14px;
-            }
-        }
+	body {
+	    font-family: Arial, sans-serif;
+	    margin: 0;
+	    padding: 0;
+	}
+	
+	.container {
+	    max-width: 800px; /* Adjust the value to your desired maximum width */
+	    margin: 0 auto;
+	    padding: 20px;
+	}
+	
+	.accommodation {
+	    display: flex;
+	    align-items: center;
+	    margin-bottom: 30px;
+	    border-bottom: 1px solid #ccc;
+	    padding-bottom: 20px;
+	}
+	
+	.accommodation img {
+	    max-width: 200px; 
+	    max-height: 200px; 
+	    margin-right: 20px;
+	}
+	
+	.accommodation .info {
+	    flex-grow: 1;
+	}
+	
+	.accommodation .name {
+	    font-size: 18px;
+	    font-weight: bold;
+	    margin-bottom: 10px;
+	}
+	
+	.accommodation .location {
+	    font-size: 16px;
+	    margin-bottom: 10px;
+	}
+	
+	.accommodation .city {
+	    font-size: 14px;
+	    color: #888;
+	    margin-bottom: 10px;
+	}
+	
+	.accommodation .price {
+	    font-size: 18px;
+	    font-weight: bold;
+	}
+	
+	.btn-go-back {
+	    background-color: #e5e5e5;
+	    border: none;
+	    color: #333;
+	    padding: 10px 20px;
+	    font-size: 16px;
+	    cursor: pointer;
+	    float : right;
+	}
+	
+	.btn-go-back:hover {
+	    background-color: #ddd;
+	}

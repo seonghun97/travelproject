@@ -15,5 +15,6 @@ public class ReviewDto {
 	private String reviewpic; //사진
 	private String reviewdate; //후기쓴날짜
 	private String userid; // 후기쓴아이디
-	private int hit; //조회수 
+	private int hit; //조회수
+	
 }

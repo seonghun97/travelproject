@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>예약</title>
+    <title>숙소 예약</title>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
     <link rel="stylesheet" href="/resources/css/reservation.css"/>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>예약</h1>
+    <h1>숙소 예약</h1>
     <form id="locationForm" action="/AccommodationForm" onsubmit="return validateForm()">
         <label for="city">도시</label>
         <select name="city">
