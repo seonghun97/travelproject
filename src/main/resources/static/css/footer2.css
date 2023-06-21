@@ -6,11 +6,11 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    color: #000000; /* 글자 색상을 흰색으로 설정 */
+    color: #000000; 
 }
 
 .social-media a {
-    color: #000000; /* 아이콘 색상을 흰색으로 설정 */
+    color: #000000; 
     margin: 0 10px;
     font-size: 20px;
 }

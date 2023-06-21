@@ -21,57 +21,55 @@
                 <th>제목</th>
                 <th>아이디</th>
                 <th>내용</th>
-                <th>조회수</th>
                 <th>등록일</th>
             </tr>
-            <c:forEach items="${list}" var="dto">
+            <c:forEach items="${list }" var="dto">
                 <tr>
-                    <td>${dto.reviewnum}</td>
+                    <td>${dto.reviewnum }</td>
                     <td>
-			            <a href="reviewWatch?reviewnum=${dto.reviewnum}">
+			            <a href="reviewWatch?reviewnum=${dto.reviewnum }">
 			                <c:choose>
-			                    <c:when test="${fn:length(dto.reviewsubject) > 10}">
-			                        ${fn:substring(dto.reviewsubject, 0, 10)}...
+			                    <c:when test="${fn:length(dto.reviewsubject) > 10 }">
+			                        ${fn:substring(dto.reviewsubject, 0, 10) }...
 			                    </c:when>
 			                    <c:otherwise>
-			                        ${dto.reviewsubject}
+			                        ${dto.reviewsubject }
 			                    </c:otherwise>
 			                </c:choose>
 			            </a>
 			        </td>
-                    <td>${dto.userid}</td>
+                    <td>${dto.userid }</td>
                     <td>
                         <c:choose>
-                            <c:when test="${fn:length(dto.reviewcontent) > 30}">
-                                ${fn:substring(dto.reviewcontent, 0, 30)}...
+                            <c:when test="${fn:length(dto.reviewcontent) > 30 }">
+                                ${fn:substring(dto.reviewcontent, 0, 30) }...
                             </c:when>
                             <c:otherwise>
-                                ${dto.reviewcontent}
+                                ${dto.reviewcontent }
                             </c:otherwise>
                         </c:choose>
                     </td>
-                    <td>${dto.hit }</td>
-                    <td>${dto.reviewdate}</td>
+                    <td>${dto.reviewdate }</td>
                 </tr>
             </c:forEach>
         </table>
     </div>
     <div class="pagination">
-        <c:if test="${pageMaker.prev}">
-            <a href="review?pageNum=${pageMaker.startPage-5}">◀</a>
+        <c:if test="${pageMaker.prev }">
+            <a href="review?pageNum=${pageMaker.startPage-5 }">◀</a>
         </c:if>
-        <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
+        <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
             <c:choose>
-                <c:when test="${currPage == num}">
-                    <a href="review?pageNum=${num}" class="active">${num}</a>
+                <c:when test="${currPage == num }">
+                    <a href="review?pageNum=${num }" class="active">${num }</a>
                 </c:when>
                 <c:otherwise>
-                    <a href="review?pageNum=${num}">${num}</a>
+                    <a href="review?pageNum=${num }">${num }</a>
                 </c:otherwise>
             </c:choose>
         </c:forEach>
-        <c:if test="${pageMaker.next}">
-            <a href="review?pageNum=${pageMaker.startPage+5}">▶</a>
+        <c:if test="${pageMaker.next }">
+            <a href="review?pageNum=${pageMaker.startPage+5 }">▶</a>
         </c:if>
     </div>
     <form id="reviewForm" action="/reviewWrite">

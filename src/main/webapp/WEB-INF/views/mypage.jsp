@@ -27,49 +27,49 @@
 	<table border="0" cellspacing="5" width="20%">
 		<tr>
 			<td>이름</td>
-			<td>${user.username}</td>
+			<td>${user.username }</td>
 		</tr>
 		<tr>
 			<td>이메일</td>
-			<td>${user.useremail}</td>
+			<td>${user.useremail }</td>
 		</tr>
 	</table>
 	<div class="buttons-container">
         <input type="button" value="회원수정" onclick="script:window.location.href='/edit'">
-        <input type="button" value="회원탈퇴" onclick="deleteUser('${user.userid}')">&nbsp;&nbsp;
+        <input type="button" value="회원탈퇴" onclick="deleteUser('${user.userid }')">&nbsp;&nbsp;
     </div>
 <h3>숙소 예약 정보</h3>
-<c:forEach var="reservationDto" items="${reservationList}">
-   <a href="reserview?resnum=${reservationDto.resnum}&accomcode=${reservationDto.accomcode}">
+<c:forEach var="reservationDto" items="${reservationList }">
+   <a href="reserview?resnum=${reservationDto.resnum }&accomcode=${reservationDto.accomcode }">
     <table border="0" cellspacing="20" width="35%">
         <tr>
             <td>예약자 이름</td>
-            <td>${user.username}</td>
+            <td>${user.username }</td>
         </tr>
         <tr>
             <td>숙소 코드</td>
-            <td>${reservationDto.accomcode}</td>
+            <td>${reservationDto.accomcode }</td>
         </tr>
         <tr>
             <td>예약 번호</td>
-            <td>${reservationDto.resnum}</td>
+            <td>${reservationDto.resnum }</td>
         </tr>
         <tr>
             <td>체크인</td>
-            <td>${fn:substring(reservationDto.checkindate, 0, 10)}</td>
+            <td>${fn:substring(reservationDto.checkindate, 0, 10) }</td>
         </tr>
         <tr>
             <td>체크아웃</td>	
-            <td>${fn:substring(reservationDto.checkoutdate, 0, 10)}</td>
+            <td>${fn:substring(reservationDto.checkoutdate, 0, 10) }</td>
         </tr>
         <tr>
             <td>가격</td>
-            <td>${reservationDto.resprice}</td>
+            <td>${reservationDto.resprice }</td>
         </tr>
     </table>
     </a>
     <div class="buttons-container">
-    	<input type="button" value="예약 취소하기" onclick="confirmCancellation(${reservationDto.resnum}, '${reservationDto.accomcode}')">&nbsp;&nbsp;
+    	<input type="button" value="예약 취소하기" onclick="confirmCancellation(${reservationDto.resnum }, '${reservationDto.accomcode }')">&nbsp;&nbsp;
     </div>
 </c:forEach>
 </body>

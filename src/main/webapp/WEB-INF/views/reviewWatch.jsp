@@ -11,10 +11,10 @@
 <body>
     <div class="container">
         <h1>${redto.reviewsubject }</h1>
-        <p class="post-details">작성자: ${redto.userid } | 등록일: ${redto.reviewdate } | 조회수: ${redto.hit }</p>
+        <p class="post-details">작성자: ${redto.userid } | 등록일: ${redto.reviewdate } |</p>
         <div class="post-content">${redto.reviewcontent }</div>
         <div class="buttons-container">
-            <c:if test="${delCheck == 1}">
+            <c:if test="${delCheck == 1 }">
                 <input type="button" value="삭제" onclick="script:window.location.href='delete?reviewnum=${redto.reviewnum }'">
             </c:if>
             <input type="button" value="목록" onclick="script:window.location.href='review'">

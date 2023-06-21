@@ -27,14 +27,14 @@
 	    width: 10px;
 	}
 	.margin02 {
-		width:100px;
+		width:px;
 	}
 	.headertext a:hover {
 	    text-decoration: underline;
 	}
 	.navbar {
 	    background-color: #f8f9fa;
-	    padding: 10px;
+	    padding: 8px;
 	    text-align: right;
 	}
 	.navbar-brand {
@@ -50,7 +50,7 @@
 	.specialhead a {
 	    color: #050505;
 	    text-decoration: none;
-	    font-size: 24px; /* Adjust the font size as desired */
+	    font-size: 24px; 
 	    font-weight: bold;
 	}
 	.specialhead a:hover {
@@ -66,7 +66,6 @@
 	.margin02 {
 	    width: 20px;
 	}
-	/* 추가된 스타일 */
 	.content {
 	    padding-top: 60px;
 	}

@@ -32,7 +32,7 @@
 </head>
 <body>
     <h1>Error</h1>
-    <p>${error}</p>
+    <p>${error }</p>
     <a href="login">로그인</a>
 </body>
 </html>
